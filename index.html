@@ -29,9 +29,6 @@ body{font-family:'Noto Sans Bengali',sans-serif;background:var(--bg);color:var(-
 .ig input:focus,.ig select:focus{border-color:var(--ac);box-shadow:0 0 0 3px var(--acd)}
 .ir{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .ir3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
-.sd{display:flex;align-items:center;gap:8px;margin:12px 0 8px}
-.sd::before,.sd::after{content:'';flex:1;height:1px;background:var(--bd)}
-.sd span{font-size:10px;font-weight:700;color:var(--ac);text-transform:uppercase;letter-spacing:1px;white-space:nowrap}
 .btn-run{width:100%;padding:13px;background:linear-gradient(135deg,var(--ac),#0097a7);color:#000;border:none;border-radius:var(--r);font-size:14px;font-weight:800;font-family:'Noto Sans Bengali',sans-serif;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 20px rgba(0,229,255,.3)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:10px 16px;border-radius:var(--rs);font-size:12px;font-weight:600;font-family:'Noto Sans Bengali',sans-serif;cursor:pointer;border:none;transition:all .2s}
 .btn-gr{background:linear-gradient(135deg,var(--gr),#00c853);color:#000}
@@ -57,8 +54,6 @@ body{font-family:'Noto Sans Bengali',sans-serif;background:var(--bg);color:var(-
 .ax h4{font-size:12px;font-weight:700;margin-bottom:6px;color:var(--t1)}
 .ax p{font-size:11px;color:var(--t2);line-height:1.6}
 .ax .ha{color:var(--am);font-family:'JetBrains Mono',monospace;font-weight:600}
-.ax .hg{color:var(--gr);font-family:'JetBrains Mono',monospace;font-weight:600}
-.ax .hr{color:var(--rd);font-family:'JetBrains Mono',monospace;font-weight:600}
 .rsk-g{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--rs);padding:12px;margin-bottom:8px}
 .rsk-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
 .rsk-h span{font-size:11px;font-weight:600;color:var(--t2)}
@@ -74,7 +69,7 @@ body{font-family:'Noto Sans Bengali',sans-serif;background:var(--bg);color:var(-
 .te-r{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700}
 .te-r.win{color:var(--gr)}.te-r.loss{color:var(--rd)}
 .te-d span{font-size:9px;color:var(--t3);margin-right:8px}
-.te-x{background:none;border:none;color:var(--t3);cursor:pointer;font-size:11px;padding:1px 5px;border-radius:3px;transition:all .2s}
+.te-x{background:none;border:none;color:var(--t3);cursor:pointer;font-size:11px;padding:1px 5px;border-radius:3px}
 .te-x:hover{color:var(--rd);background:var(--rdd)}
 .comp-rank{display:flex;align-items:center;gap:14px;background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r);padding:16px;margin-bottom:10px}
 .comp-rank.danger{border-color:var(--rd);background:var(--rdd)}
@@ -95,15 +90,10 @@ body{font-family:'Noto Sans Bengali',sans-serif;background:var(--bg);color:var(-
 .modal-ov.on{display:flex}
 .modal{background:var(--bg3);border:1px solid var(--bd2);border-radius:var(--r);padding:24px;max-width:520px;width:92%;box-shadow:0 20px 60px rgba(0,0,0,.5);position:relative}
 .mc{position:absolute;top:14px;right:14px;background:none;border:none;color:var(--t3);font-size:18px;cursor:pointer;padding:3px 7px;border-radius:5px}
-.acc-g{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
-.ab{background:var(--bg2);border:1.5px solid var(--bd);border-radius:var(--rs);padding:8px 4px;text-align:center;cursor:pointer;transition:all .2s;color:var(--t2);font-family:'JetBrains Mono',monospace}
-.ab.on{border-color:var(--ac);background:var(--acd);color:var(--ac)}
-.ab .al{font-size:9px;color:var(--t3);display:block;margin-bottom:1px;font-family:'Noto Sans Bengali',sans-serif}
-.ab.on .al{color:var(--ac)}
-.ab .av{font-size:14px;font-weight:700;display:block}
-.bal-d{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--rs);padding:12px 14px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
+.bal-edit{background:var(--bg2);border:1px solid var(--bd);color:var(--gr);font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;padding:5px 8px;border-radius:8px;width:140px;text-align:right;outline:none}
+.bal-edit:focus{border-color:var(--ac)}
 .qr{display:flex;gap:6px;margin-top:5px}
-.qr button{flex:1;padding:5px;background:var(--bg2);border:1px solid var(--bd);border-radius:5px;color:var(--t3);font-family:'JetBrains Mono',monospace;font-size:10px;cursor:pointer;transition:all .2s}
+.qr button{flex:1;padding:5px;background:var(--bg2);border:1px solid var(--bd);border-radius:5px;color:var(--t3);font-family:'JetBrains Mono',monospace;font-size:10px;cursor:pointer}
 .qr button.on{border-color:var(--ac);color:var(--ac);background:var(--acd)}
 .flex-sel{display:flex;gap:5px;align-items:center}
 .flex-sel select{flex:1}
@@ -133,7 +123,7 @@ body{font-family:'Noto Sans Bengali',sans-serif;background:var(--bg);color:var(-
 <div class="ico"><i class="fas fa-shield-halved"></i></div>
 <div><h1>Prop Firm Assistant Pro</h1><span>Institutional Grade Risk & Trade Management</span></div>
 <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
-<span class="sb" id="syncI"><span class="dt"></span><span id="syncT">কানেক্ট নেই</span></span>
+<span class="sb" id="syncI" style="padding:5px 12px;border-radius:16px;font-size:11px;font-weight:600;display:inline-flex;align-items:center;gap:5px"><span class="dt" style="width:5px;height:5px;border-radius:50%;background:currentColor"></span><span id="syncT">কানেক্ট নেই</span></span>
 <button class="btn btn-ol" style="padding:7px 12px;font-size:11px" onclick="opS()"><i class="fas fa-gear"></i></button>
 </div>
 </header>
@@ -194,7 +184,6 @@ body{font-family:'Noto Sans Bengali',sans-serif;background:var(--bg);color:var(-
 <option value="ftmo">FTMO (5% Daily, 10% Trailing)</option>
 <option value="fundingpips">Funding Pips (5% Daily, 10% Max)</option>
 <option value="topstep">Topstep (4% Daily, 8% Max)</option>
-<option value="the5ers">The5ers (5% Daily, 10% Max)</option>
 <option value="custom">Custom (নিজের নিয়ম)</option>
 </select>
 </div>
@@ -204,16 +193,18 @@ body{font-family:'Noto Sans Bengali',sans-serif;background:var(--bg);color:var(-
 <div class="ig"><label>DD টাইপ</label><select id="fDDT" onchange="calcLot()"><option value="trailing">Trailing</option><option value="balance">Static (Initial)</option></select></div>
 </div>
 
-<div class="ct"><i class="fas fa-wallet"></i> অ্যাকাউন্ট সাইজ</div>
-<div class="acc-g" id="accG">
-<div class="ab" onclick="selA(this,5000)"><span class="al">স্টার্টার</span><span class="av">$5K</span></div>
-<div class="ab" onclick="selA(this,10000)"><span class="al">বেসিক</span><span class="av">$10K</span></div>
-<div class="ab" onclick="selA(this,25000)"><span class="al">স্ট্যান্ডার্ড</span><span class="av">$25K</span></div>
-<div class="ab" onclick="selA(this,50000)"><span class="al">অ্যাডভান্সড</span><span class="av">$50K</span></div>
-<div class="ab on" onclick="selA(this,100000)"><span class="al">প্রো</span><span class="av">$100K</span></div>
-<div class="ab" onclick="selA(this,200000)"><span class="al">এলিট</span><span class="av">$200K</span></div>
+<div class="ct"><i class="fas fa-wallet"></i> অ্যাকাউন্ট ব্যালেন্স</div>
+<div style="background:var(--bg2);border:1px solid var(--bd);border-radius:8px;padding:12px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+<div>
+<div style="font-size:10px;color:var(--t3);margin-bottom:4px">বর্তমান ব্যালেন্স ($)</div>
+<input type="number" class="bal-edit" id="balV" value="100000" oninput="uBal(this.value)">
 </div>
-<div class="bal-d"><div><div style="font-size:10px;color:var(--t3)">বর্তমান ব্যালেন্স</div><div class="mono" style="font-size:20px;font-weight:700;color:var(--gr)" id="balV">$100,000</div></div><div style="text-align:right"><span style="font-size:9px;color:var(--t3)">পরিবর্তন</span><div class="mono" id="balC" style="color:var(--gr)">$0</div></div></div>
+<div style="text-align:right">
+<div style="font-size:10px;color:var(--t3);margin-bottom:4px">পরিবর্তন</div>
+<div class="mono" id="balC" style="font-size:18px;font-weight:700;color:var(--gr)">$0</div>
+<button class="btn btn-ol" style="margin-top:5px;padding:4px 8px;font-size:10px" onclick="setInitial()"><i class="fas fa-rotate"></i> এটিকে ইনিশিয়াল করুন</button>
+</div>
+</div>
 </div>
 
 <div class="crd">
@@ -320,12 +311,10 @@ body{font-family:'Noto Sans Bengali',sans-serif;background:var(--bg);color:var(-
 
 <script>
 let S={bal:100000,ib:100000,hi:100000,rp:1,dl:0,trades:[],sURL:'',firm:'ftmo'};
-// প্রপ ফার্ম রুল ডেটাবেস
 const Firms = {
     ftmo: { dd: 5, md: 10, mdt: 'trailing' },
     fundingpips: { dd: 5, md: 10, mdt: 'balance' },
     topstep: { dd: 4, md: 8, mdt: 'balance' },
-    the5ers: { dd: 5, md: 10, mdt: 'balance' },
     custom: { dd: 5, md: 10, mdt: 'trailing' }
 };
 let customSetups = JSON.parse(localStorage.getItem('customSetups')) || ['Breakout', 'Trend Pullback', 'Reversal', 'Range'];
@@ -337,18 +326,66 @@ function fN(n){return Math.abs(n).toLocaleString('en-US',{minimumFractionDigits:
 
 function opS(){document.getElementById('SM').classList.add('on');document.getElementById('sURL').value=S.sURL;document.getElementById('sIB').value=S.ib}
 function clS(){document.getElementById('SM').classList.remove('on')}
-function svS(){S.sURL=document.getElementById('sURL').value.trim();S.ib=parseFloat(document.getElementById('sIB').value)||100000;S.bal=S.ib;S.hi=S.ib;S.trades=[];uBD();localStorage.setItem('pmS',JSON.stringify({u:S.sURL,b:S.ib}));clS();toast('ok','সেভ হয়েছে')}
-function ldSet(){try{const s=JSON.parse(localStorage.getItem('pmS'));if(s){if(s.u)S.sURL=s.u;if(s.b){S.ib=s.b;S.bal=s.b;S.hi=s.b}}uBD();loadDropdowns()}catch(e){loadDropdowns()}}
+function svS(){
+    S.sURL=document.getElementById('sURL').value.trim();
+    S.ib=parseFloat(document.getElementById('sIB').value)||100000;
+    S.bal=S.ib;S.hi=S.ib;S.dl=0;S.trades=[];
+    document.getElementById('balV').value=S.bal;
+    uBD();calcLot();rTL();
+    localStorage.setItem('pmS',JSON.stringify({u:S.sURL,b:S.ib}));
+    clS();
+    if(S.sURL){uSI('loading');toast('inf','কানেক্ট হচ্ছে...');ldTrades();}
+    else{uSI('disconnected');toast('ok','সেভ হয়েছে');}
+}
+function uSI(s){
+    const e=document.getElementById('syncI'),t=document.getElementById('syncT');
+    e.className='sb '+(s==='connected'?'safe':s==='loading'?'warn':'danger');
+    t.textContent=s==='connected'?'কানেক্টেড':s==='loading'?'সিঙ্ক...':'কানেক্ট নেই';
+}
+
+// লোকাল স্টোরেজ থেকে লোড এবং অটো-কানেক্ট
+function ldSet(){
+    try{
+        const s=JSON.parse(localStorage.getItem('pmS'));
+        if(s){
+            if(s.u) S.sURL=s.u;
+            if(s.b){S.ib=s.b;S.bal=s.b;S.hi=s.b;document.getElementById('sIB').value=s.b}
+        }
+        document.getElementById('balV').value=S.bal;
+        uBD();loadDropdowns();calcLot();rTL();
+        if(S.sURL){
+            uSI('connected'); 
+            ldTrades(); // পেজ লোড হলেই অটো কানেক্ট হবে
+        }
+    }catch(e){loadDropdowns();calcLot();rTL();}
+}
+
+async function ldTrades(){
+    if(!S.sURL) return;
+    try{
+        const r=await fetch(S.sURL+'?action=getAll',{redirect:'follow'});
+        const d=await r.json();
+        if(d.status==='success'){
+            S.trades=d.trades.map(t=>({id:t.id,pair:t.pair,dir:t.dir,lot:+t.lot,rr:t.rr,session:t.session,setup:t.setup,psychology:t.psychology,note:t.note,result:+t.result,type:t.type,date:t.date}));
+            if(S.trades.length>0){
+                const l=S.trades[0];
+                // ব্যালেন্স শিট থেকে নেওয়া
+                S.bal = l.balanceAfter ? parseFloat(l.balanceAfter) : S.ib;
+                S.hi = Math.max(S.ib, S.bal);
+            }
+            document.getElementById('balV').value=S.bal;
+            uBD();uSI('connected');rTL();calcLot();
+        } else { uSI('disconnected'); }
+    }catch(e){uSI('disconnected');}
+}
 
 function loadDropdowns(){document.getElementById('tSetup').innerHTML=customSetups.map(o=>`<option>${o}</option>`).join('');document.getElementById('tPsy').innerHTML=customPsy.map(o=>`<option>${o}</option>`).join('');}
 function addCustomOpt(type){let val=prompt('নতুন অপশন:');if(val&&val.trim()!==''){val=val.trim();if(type==='setup'&&!customSetups.includes(val)){customSetups.push(val);localStorage.setItem('customSetups',JSON.stringify(customSetups));}if(type==='psy'&&!customPsy.includes(val)){customPsy.push(val);localStorage.setItem('customPsy',JSON.stringify(customPsy));}loadDropdowns();if(type==='setup')document.getElementById('tSetup').value=val;if(type==='psy')document.getElementById('tPsy').value=val;}}
 
-// প্রপ ফার্ম সিলেক্ট ফাংশন
 function selFirm() {
     const f = document.getElementById('firmSel').value;
     S.firm = f;
-    const isCustom = f === 'custom';
-    document.getElementById('customFirmRules').style.display = isCustom ? 'grid' : 'none';
+    document.getElementById('customFirmRules').style.display = f === 'custom' ? 'grid' : 'none';
     calcLot();
 }
 
@@ -366,10 +403,30 @@ function runSim(){
     document.getElementById('insightT').innerHTML=`${r1*100}% রিস্কে পাস রেট <span class="ha" style="color:var(--am)">${pr.toFixed(0)}%</span>। ফান্ডেড হতে <span class="ha" style="color:var(--am)">${expAtt}টি</span> অ্যাটেম্পট ও <span class="ha" style="color:var(--am)">${expTr}টি</span> ট্রেড লাগতে পারে।`;
 }
 
-function selA(el,b){document.querySelectorAll('.ab').forEach(b=>b.classList.remove('on'));el.classList.add('on');if(b===0){document.getElementById('cBR').style.display='block';const v=parseFloat(document.getElementById('cBI').value);if(v>0)setNB(v)}else{document.getElementById('cBR').style.display='none';setNB(b)}}
-function apCB(){const v=parseFloat(document.getElementById('cBI').value);if(v>0)setNB(v)}
-function setNB(b){S.ib=b;S.bal=b;S.hi=b;S.dl=0;S.trades=[];uBD();calcLot();rTL();document.getElementById('dBal').value=b;calcDouble();}
-function uBD(){document.getElementById('balV').textContent='$'+fN(S.bal);const c=S.bal-S.ib;const el=document.getElementById('balC');if(c>0){el.textContent='+$'+fN(c);el.style.color='var(--gr)'}else if(c<0){el.textContent='-$'+fN(Math.abs(c));el.style.color='var(--rd)'}else{el.textContent='$0';el.style.color='var(--t2)'}}
+// ব্যালেন্স পরিবর্তন ফাংশন
+function uBal(v){
+    S.bal = parseFloat(v) || 0;
+    if(S.bal > S.hi) S.hi = S.bal;
+    uBD();calcLot();
+    document.getElementById('dBal').value=S.bal;
+    calcDouble();
+}
+function setInitial(){
+    S.ib = S.bal;
+    S.hi = S.bal;
+    S.dl = 0;
+    S.trades = [];
+    uBD();calcLot();rTL();
+    document.getElementById('sIB').value=S.ib;
+    localStorage.setItem('pmS',JSON.stringify({u:S.sURL,b:S.ib}));
+    toast('ok','এই ব্যালেন্সটিকে ইনিশিয়াল করা হয়েছে');
+}
+function uBD(){
+    const c=S.bal-S.ib;const el=document.getElementById('balC');
+    if(c>0){el.textContent='+$'+fN(c);el.style.color='var(--gr)'}
+    else if(c<0){el.textContent='-$'+fN(Math.abs(c));el.style.color='var(--rd)'}
+    else{el.textContent='$0';el.style.color='var(--t2)'}
+}
 function gPV(){const s=document.getElementById('prS').value;if(s==='custom'){document.getElementById('cpG').style.display='block';return parseFloat(document.getElementById('cpV').value)||10}document.getElementById('cpG').style.display='none';return parseFloat(s)}
 
 function calcLot(){
@@ -380,7 +437,6 @@ function calcLot(){
     if(parseFloat(document.getElementById('tL').value)===0||document.getElementById('tL').value===''){document.getElementById('tL').value=ls.toFixed(2)}
     document.getElementById('pcLot').value=ls.toFixed(2);calcPartial();
     
-    // ড্রডাউন হিসাব (প্রপ ফার্ম রুল অনুযায়ী)
     const firm = S.firm || 'ftmo';
     let rules = Firms[firm];
     if(firm === 'custom') {
@@ -398,7 +454,6 @@ function calcLot(){
     document.getElementById('ddMT').textContent='$'+fN(mls)+' / $'+fN(mdLimit);
     document.getElementById('ddDB').className = 'dd-f ' + ((dls/ddLimit*100)>=80?'danger':(dls/ddLimit*100)>=50?'warn':'safe');
     document.getElementById('ddMB').className = 'dd-f ' + ((mls/mdLimit*100)>=80?'danger':(mls/mdLimit*100)>=50?'warn':'safe');
-    
     calcProMetrics();
 }
 function uRD(){document.getElementById('riskD').textContent=parseFloat(document.getElementById('riskS').value).toFixed(1)+'%'}
@@ -407,13 +462,22 @@ function sR(v){document.getElementById('riskS').value=v;uRD();calcLot()}
 function calcRR(){const sl=parseFloat(document.getElementById('tSL').value)||0,tp=parseFloat(document.getElementById('tTP').value)||0;document.getElementById('tRR').value=(sl>0&&tp>0)?(tp/sl).toFixed(2):'0'}
 function calcPartial(){const lot=parseFloat(document.getElementById('pcLot').value)||0,p1=parseInt(document.getElementById('pcP1').value),l1=(lot*p1/100),l2=lot-l1;document.getElementById('pcL1').textContent=l1.toFixed(2);document.getElementById('pcL2').textContent=l2.toFixed(2);}
 
-function addT(type){
+async function addT(type){
     const pair=document.getElementById('tP').value.trim().toUpperCase();if(!pair){toast('err','পেয়ার লিখুন');return}
     const lot=parseFloat(document.getElementById('tL').value)||0,result=parseFloat(document.getElementById('tR').value)||0;
     let fr=type==='win'?Math.abs(result):-Math.abs(result);
     const t={id:Date.now().toString(),date:new Date().toLocaleDateString('en-CA'),pair,dir:document.getElementById('tDir').value,lot,rr:document.getElementById('tRR').value,session:document.getElementById('tSes').value,setup:document.getElementById('tSetup').value,psychology:document.getElementById('tPsy').value,note:document.getElementById('tNote').value,result:fr,type};
     S.trades.unshift(t);S.bal+=fr;S.hi=Math.max(S.hi,S.bal);if(fr<0)S.dl+=Math.abs(fr);
+    document.getElementById('balV').value=S.bal;
     uBD();rTL();calcLot();document.getElementById('dBal').value=S.bal;calcDouble();
+    
+    // গুগল শিটে সেভ
+    if(S.sURL){
+        try{
+            await fetch(S.sURL,{method:'POST',redirect:'follow',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'add',trade:{id:t.id,time:new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',hour12:false}),date:t.date,pair:t.pair,dir:t.dir,lot:t.lot,sl:0,tp:0,rr:t.rr,session:t.session,setup:t.setup,duration:document.getElementById('tDur').value,type:t.type,result:t.result,balanceBefore:S.bal-t.result,balanceAfter:S.bal,dailyLoss:S.dl,firm:S.firm,psychology:t.psychology,note:t.note}})});
+        }catch(e){}
+    }
+    
     document.getElementById('tR').value='';document.getElementById('tL').value='';document.getElementById('tNote').value='';
     toast(type==='win'?'ok':'err', type==='win'?'প্রফিট লগড':'লস লগড');
 }
@@ -426,7 +490,7 @@ function rTL(){
     l.innerHTML=f.map(t=>`<div class="te ${t.type}"><div class="te-h"><span class="te-p">${t.pair} <span style="font-size:9px;color:var(--t3)">${t.dir}</span></span><div style="display:flex;gap:6px"><span class="te-r ${t.type}">${t.result>0?'+':''}$${fN(t.result)}</span><button class="te-x" onclick="delT('${t.id}')"><i class="fas fa-xmark"></i></button></div></div><div class="te-d"><span>${t.lot} Lot</span><span>RR: ${t.rr}</span><span>${t.setup}</span></div><div style="font-size:10px;color:var(--t2);margin-top:5px;padding:5px;background:rgba(0,0,0,.2);border-radius:4px"><i class="fas fa-comment-dots" style="color:var(--ac);margin-right:4px"></i>${t.note||'No note'}</div></div>`).join('');
     uTS(f);
 }
-function delT(id){const i=S.trades.findIndex(t=>t.id===id);if(i===-1)return;const t=S.trades[i];S.bal-=t.result;if(t.result<0)S.dl-=Math.abs(t.result);S.trades.splice(i,1);S.hi=Math.max(S.ib,S.bal);uBD();rTL();calcLot();document.getElementById('dBal').value=S.bal;calcDouble();}
+function delT(id){const i=S.trades.findIndex(t=>t.id===id);if(i===-1)return;const t=S.trades[i];S.bal-=t.result;if(t.result<0)S.dl-=Math.abs(t.result);S.trades.splice(i,1);S.hi=Math.max(S.ib,S.bal);document.getElementById('balV').value=S.bal;uBD();rTL();calcLot();document.getElementById('dBal').value=S.bal;calcDouble();}
 
 function uTS(f){
     document.getElementById('sTT').textContent=f.length;
@@ -459,7 +523,7 @@ function calcDouble(){
 }
 
 function rstDly(){S.dl=0;calcLot();toast('ok','ডেইলি DD রিসেট হয়েছে')}
-function rstAll(){if(confirm('সব ট্রেড ডেটা মুছে ফেলা হবে?')){S.bal=S.ib;S.hi=S.ib;S.dl=0;S.trades=[];uBD();rTL();calcLot();document.getElementById('dBal').value=S.ib;calcDouble();toast('inf','সব রিসেট হয়েছে')}}
+function rstAll(){if(confirm('সব ট্রেড ডেটা মুছে ফেলা হবে?')){S.bal=S.ib;S.hi=S.ib;S.dl=0;S.trades=[];document.getElementById('balV').value=S.bal;uBD();rTL();calcLot();document.getElementById('dBal').value=S.ib;calcDouble();toast('inf','সব রিসেট হয়েছে')}}
 
 function calcComp(){
     const p=parseInt(document.getElementById('coP').value),r=parseInt(document.getElementById('coR').value),cR=parseFloat(document.getElementById('coCR').value),d=parseInt(document.getElementById('coD').value),dd=parseFloat(document.getElementById('coDD').value),wr=parseFloat(document.getElementById('coW').value)/100,rr=parseFloat(document.getElementById('coRR').value),td=parseInt(document.getElementById('coTD').value);
@@ -472,7 +536,7 @@ function calcComp(){
     document.getElementById('compStrat').innerHTML=`সর্বোচ্চ ${ml} বার 1R লস সহ্য করতে পারবেন। রিস্ক অফ রুইন: <span class="ha">${ror.toFixed(1)}%</span>।`;
 }
 
-function init(){ldSet();tP2();updR();selFirm();calcLot();rTL();calcDouble()}
+function init(){ldSet();tP2();updR();selFirm();}
 init();
 </script>
 </body>
