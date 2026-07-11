@@ -7,9 +7,23 @@
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Noto+Sans+Bengali:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-:root{--bg:#06090f;--bg2:#0c1220;--bg3:#111827;--bd:#1e293b;--bd2:#334155;--t1:#f1f5f9;--t2:#94a3b8;--t3:#64748b;--ac:#00e5ff;--acd:rgba(0,229,255,.1);--gr:#00e676;--grd:rgba(0,230,118,.1);--grg:rgba(0,230,118,.3);--rd:#ff1744;--rdd:rgba(255,23,68,.1);--rdg:rgba(255,23,68,.3);--am:#ffab00;--amd:rgba(255,171,0,.1);--amg:rgba(255,171,0,.3);--pu:#b388ff;--pud:rgba(179,136,255,.1);--r:12px;--rs:8px}
+:root{
+    --bg:#06090f; --bg2:#0c1220; --bg3:#111827; --bd:#1e293b; --bd2:#334155;
+    --t1:#f1f5f9; --t2:#94a3b8; --t3:#64748b; 
+    --ac:#00e5ff; --acd:rgba(0,229,255,.1); 
+    --gr:#00e676; --grd:rgba(0,230,118,.1); --grg:rgba(0,230,118,.3); 
+    --rd:#ff1744; --rdd:rgba(255,23,68,.1); --rdg:rgba(255,23,68,.3); 
+    --am:#ffab00; --amd:rgba(255,171,0,.1); --amg:rgba(255,171,0,.3); 
+    --pu:#b388ff; --pud:rgba(179,136,255,.1); 
+    --r:12px; --rs:8px;
+}
+body.light-theme{
+    --bg:#f8fafc; --bg2:#ffffff; --bg3:#f1f5f9; --bd:#e2e8f0; --bd2:#cbd5e1;
+    --t1:#0f172a; --t2:#475569; --t3:#64748b;
+    --acd:rgba(0,229,255,.2); --grd:rgba(0,230,118,.2); --rdd:rgba(255,23,68,.1); --amd:rgba(255,171,0,.2); --pud:rgba(179,136,255,.2);
+}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Noto Sans Bengali',sans-serif;background:var(--bg);color:var(--t1);min-height:100vh;overflow-x:hidden}
+body{font-family:'Noto Sans Bengali',sans-serif;background:var(--bg);color:var(--t1);min-height:100vh;overflow-x:hidden;transition:background .3s,color .3s}
 .bg-g{position:fixed;inset:0;background-image:linear-gradient(rgba(0,229,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
 .app{position:relative;z-index:1;max-width:1560px;margin:0 auto;padding:14px}
 .hdr{display:flex;align-items:center;gap:12px;padding:14px 20px;background:var(--bg3);border:1px solid var(--bd);border-radius:var(--r);margin-bottom:14px;flex-wrap:wrap}
@@ -35,6 +49,7 @@ body{font-family:'Noto Sans Bengali',sans-serif;background:var(--bg);color:var(-
 .btn-rd{background:linear-gradient(135deg,var(--rd),#d50000);color:#fff}
 .btn-ol{background:transparent;border:1px solid var(--bd2);color:var(--t2)}
 .btn-ol:hover{border-color:var(--ac);color:var(--ac)}
+.btn-ol.on{border-color:var(--ac);color:var(--ac);background:var(--acd)}
 .btn-f{width:100%}
 .bg2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
 .rg{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
@@ -46,6 +61,7 @@ body{font-family:'Noto Sans Bengali',sans-serif;background:var(--bg);color:var(-
 .tg{color:var(--gr)}.tr{color:var(--rd)}.ta{color:var(--am)}.tc{color:var(--ac)}.tp{color:var(--pu)}
 .mono{font-family:'JetBrains Mono',monospace}
 .dd-b{width:100%;height:8px;background:rgba(255,255,255,.05);border-radius:4px;overflow:hidden;margin:6px 0}
+body.light-theme .dd-b{background:rgba(0,0,0,.05)}
 .dd-f{height:100%;border-radius:4px;transition:width .5s}
 .dd-f.safe{background:var(--gr)}.dd-f.warn{background:var(--am)}.dd-f.danger{background:var(--rd)}
 .ax{background:var(--bg2);border-radius:var(--r);padding:14px;margin-top:12px;border-left:3px solid var(--ac)}
@@ -92,12 +108,16 @@ body{font-family:'Noto Sans Bengali',sans-serif;background:var(--bg);color:var(-
 .flex-sel{display:flex;gap:5px;align-items:center}
 .flex-sel select{flex:1}
 .add-btn{width:32px;height:32px;background:var(--bg2);border:1px solid var(--bd);color:var(--ac);border-radius:var(--rs);cursor:pointer;font-size:12px;flex-shrink:0}
-.chk-item{display:flex;align-items:center;gap:8px;background:var(--bg2);padding:8px;border-radius:6px;margin-bottom:6px;font-size:12px}
+.chk-item{display:flex;align-items:center;gap:8px;background:var(--bg2);padding:8px;border-radius:6px;margin-bottom:6px;font-size:12px;color:var(--t1)}
 .chk-item input{width:16px;height:16px;accent-color:var(--ac)}
 .chk-item button{background:none;border:none;color:var(--rd);cursor:pointer;margin-left:auto}
 .voice-btn{background:var(--bg2);border:1px solid var(--bd);color:var(--ac);border-radius:8px;cursor:pointer;font-size:14px;padding:8px 12px}
 .voice-btn.rec{background:var(--rd);color:#fff;animation:pd 1.5s ease-in-out infinite}
-.file-btn{background:var(--bg2);border:1px solid var(--bd);color:var(--ac);border-radius:8px;cursor:pointer;font-size:12px;padding:8px 12px;display:flex;align-items:center;gap:5px}
+.sd{display:flex;align-items:center;gap:8px;margin:12px 0 8px}
+.sd::before,.sd::after{content:'';flex:1;height:1px;background:var(--bd)}
+.sd span{font-size:10px;font-weight:700;color:var(--ac);text-transform:uppercase;letter-spacing:1px;white-space:nowrap}
+.mode-btn{flex:1;padding:8px;background:var(--bg2);border:1px solid var(--bd);border-radius:8px;color:var(--t3);cursor:pointer;font-size:11px;font-weight:600}
+.mode-btn.on{background:var(--acd);color:var(--ac);border-color:var(--ac)}
 </style>
 </head>
 <body>
@@ -121,10 +141,11 @@ body{font-family:'Noto Sans Bengali',sans-serif;background:var(--bg);color:var(-
 <div class="app">
 <header class="hdr">
 <div class="ico"><i class="fas fa-shield-halved"></i></div>
-<div><h1>Prop Firm Assistant Pro</h1><span>Voice Notes & Screenshot Support</span></div>
+<div><h1>Prop Firm Assistant Pro</h1><span>Voice, Screenshot & Theme Support</span></div>
 <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
 <span class="sb" id="syncI" style="padding:5px 12px;border-radius:16px;font-size:11px;font-weight:600;display:inline-flex;align-items:center;gap:5px"><span class="dt" style="width:5px;height:5px;border-radius:50%;background:currentColor"></span><span id="syncT">কানেক্ট নেই</span></span>
 <button class="btn btn-ol" style="padding:7px 12px;font-size:11px" onclick="opS()"><i class="fas fa-gear"></i></button>
+<button class="btn btn-ol" style="padding:7px 12px;font-size:14px" onclick="toggleTheme()" id="themeBtn"><i class="fas fa-moon"></i></button>
 </div>
 </header>
 
@@ -207,7 +228,7 @@ body{font-family:'Noto Sans Bengali',sans-serif;background:var(--bg);color:var(-
 </div>
 
 <div class="crd" style="border-color:var(--am)">
-<div class="ct" style="color:var(--am)"><i class="fas fa-list-check"></i> প্রি-ট্রেড চেকলিস্ট</div>
+<div class="ct" style="color:var(--am)"><i class="fas fa-list-check"></i> চেকপয়েন্ট / প্রি-ট্রেড চেকলিস্ট</div>
 <div id="checklistItems"></div>
 <div style="display:flex;gap:8px;margin-top:8px">
 <input type="text" id="newChk" placeholder="নতুন চেকলিস্ট আইটেম..." style="flex:1;background:var(--bg2);border:1px solid var(--bd);border-radius:8px;padding:8px;color:var(--t1);font-size:12px;outline:none">
@@ -218,11 +239,37 @@ body{font-family:'Noto Sans Bengali',sans-serif;background:var(--bg);color:var(-
 <div class="crd">
 <div class="ct"><i class="fas fa-plus-circle"></i> ট্রেড জার্নাল লগ</div>
 <div class="ir3"><div class="ig"><label>পেয়ার</label><input type="text" id="tP" value="EURUSD"></div><div class="ig"><label>টাইপ</label><select id="tDir"><option>Buy</option><option>Sell</option></select></div><div class="ig"><label>লট</label><input type="number" id="tL" step="0.01" placeholder="অটো"></div></div>
-<div class="ir3"><div class="ig"><label>SL (পিপস)</label><input type="number" id="tSL" value="0" oninput="calcRR()"></div><div class="ig"><label>TP (পিপস)</label><input type="number" id="tTP" value="0" oninput="calcRR()"></div><div class="ig"><label>RR (অটো)</label><input type="text" id="tRR" value="0" readonly style="color:var(--gr)"></div></div>
+
+<div class="sd"><span>SL / TP ইনপুট মোড</span></div>
+<div style="display:flex;gap:8px;margin-bottom:10px">
+<button class="mode-btn on" id="btnModePips" onclick="setInputMode('pips')">পিপস দিয়ে</button>
+<button class="mode-btn" id="btnModePrice" onclick="setInputMode('price')">প্রাইস দিয়ে</button>
+</div>
+
+<div id="modePips">
+<div class="ir3">
+<div class="ig"><label>SL (Pips)</label><input type="number" id="tSL" value="0" oninput="calcRR()"></div>
+<div class="ig"><label>TP (Pips)</label><input type="number" id="tTP" value="0" oninput="calcRR()"></div>
+<div class="ig"><label>RR (Auto)</label><input type="text" id="tRR" value="0" readonly style="color:var(--gr)"></div>
+</div>
+</div>
+
+<div id="modePrice" style="display:none">
+<div class="ir3">
+<div class="ig"><label>Entry Price</label><input type="number" id="tEntry" step="0.00001" oninput="calcPips()" placeholder="1.1050"></div>
+<div class="ig"><label>SL Price</label><input type="number" id="tSLPrice" step="0.00001" oninput="calcPips()" placeholder="1.1030"></div>
+<div class="ig"><label>TP Price</label><input type="number" id="tTPPrice" step="0.00001" oninput="calcPips()" placeholder="1.1090"></div>
+</div>
+<div class="ir3">
+<div class="ig"><label>Pip Multiplier</label><select id="tMult" onchange="calcPips()"><option value="10000">Forex (x10,000)</option><option value="1000">Forex JPY (x1,000)</option><option value="100">Gold / Indices (x100)</option><option value="10">x10</option><option value="1">x1</option></select></div>
+<div class="ig"><label>SL (Pips - Auto)</label><input type="number" id="tSLAuto" readonly style="color:var(--gr)"></div>
+<div class="ig"><label>TP (Pips - Auto)</label><input type="number" id="tTPAuto" readonly style="color:var(--gr)"></div>
+</div>
+</div>
+
 <div class="ir3"><div class="ig"><label>সেশন</label><select id="tSes"><option>Asian</option><option>London</option><option>New York</option></select></div><div class="ig"><label>সেটআপ</label><div class="flex-sel"><select id="tSetup"></select><button class="add-btn" onclick="addCustomOpt('setup')"><i class="fas fa-plus"></i></button></div></div><div class="ig"><label>সময়কাল</label><input type="text" id="tDur" placeholder="2h 30m"></div></div>
 <div class="ir3"><div class="ig"><label>রেটিং</label><select id="tRat"><option>A+</option><option>A</option><option>B</option><option>C</option></select></div><div class="ig"><label>রেজাল্ট ($)</label><input type="number" id="tR" step="0.01" placeholder="+500"></div><div class="ig"><label>মানসিকতা</label><div class="flex-sel"><select id="tPsy"></select><button class="add-btn" onclick="addCustomOpt('psy')"><i class="fas fa-plus"></i></button></div></div></div>
 
-<!-- মন্তব্য (ভয়েস টাইপিং) ও স্ক্রিনশট -->
 <div class="ig">
 <label>মন্তব্য / ট্রেডের কারণ (ভয়েস টাইপিং চালু আছে)</label>
 <div style="display:flex;gap:8px;align-items:center">
@@ -341,6 +388,20 @@ function sMT(t,el){document.querySelectorAll('.tpc').forEach(p=>p.classList.remo
 function toast(t,m){const c=document.getElementById('TC');const d=document.createElement('div');d.className='toast '+t;d.innerHTML='<i class="fas '+(t==='ok'?'fa-check-circle':'fa-circle-info')+'"></i> '+m;c.appendChild(d);setTimeout(()=>{d.remove()},3000)}
 function fN(n){return Math.abs(n).toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:2})}
 
+// Theme Toggle
+function toggleTheme(){
+    document.body.classList.toggle('light-theme');
+    const isLight = document.body.classList.contains('light-theme');
+    document.getElementById('themeBtn').innerHTML = isLight ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+}
+function loadTheme(){
+    if(localStorage.getItem('theme') === 'light'){
+        document.body.classList.add('light-theme');
+        document.getElementById('themeBtn').innerHTML = '<i class="fas fa-sun"></i>';
+    }
+}
+
 function opS(){document.getElementById('SM').classList.add('on');document.getElementById('sURL').value=S.sURL;document.getElementById('sIB').value=S.ib}
 function clS(){document.getElementById('SM').classList.remove('on')}
 function svS(){S.sURL=document.getElementById('sURL').value.trim();S.ib=parseFloat(document.getElementById('sIB').value)||100000;S.bal=S.ib;S.hi=S.ib;S.dl=0;S.trades=[];document.getElementById('balV').value=S.bal;uBD();calcLot();rTL();localStorage.setItem('pmS',JSON.stringify({u:S.sURL,b:S.ib}));clS();if(S.sURL){uSI('loading');toast('inf','কানেক্ট হচ্ছে...');ldTrades();}else{uSI('disconnected');}}
@@ -356,7 +417,6 @@ function renderChecklist(){const c=document.getElementById('checklistItems');c.i
 function addCheckItem(){const v=document.getElementById('newChk').value.trim();if(v){checklist.push(v);localStorage.setItem('ptcl',JSON.stringify(checklist));document.getElementById('newChk').value='';renderChecklist();}}
 function delCheck(i){checklist.splice(i,1);localStorage.setItem('ptcl',JSON.stringify(checklist));renderChecklist();}
 
-// ভয়েস টাইপিং ফাংশন
 function startVoice(){
     const windowSR = window.SpeechRecognition || window.webkitSpeechRecognition;
     if(!windowSR){ toast('err','আপনার ব্রাউজারে ভয়েস টাইপিং সাপোর্ট করে না। Chrome ব্যবহার করুন।'); return; }
@@ -376,7 +436,7 @@ function startVoice(){
         }
         document.getElementById('tNote').value = finalText + interimText;
     };
-    recognition.onerror = (e) => { toast('err','ভয়েস রেকগনিশন এরর: ' + e.error); btn.classList.remove('rec'); };
+    recognition.onerror = (e) => { toast('err','ভয়েস এরর: ' + e.error); btn.classList.remove('rec'); };
     recognition.onend = () => { btn.classList.remove('rec'); };
     recognition.start();
 }
@@ -397,6 +457,40 @@ function calcLot(){S.rp=parseFloat(document.getElementById('riskS').value);const
 function uRD(){document.getElementById('riskD').textContent=parseFloat(document.getElementById('riskS').value).toFixed(1)+'%'}
 function sR(v){document.getElementById('riskS').value=v;uRD();calcLot()}
 
+function setInputMode(mode) {
+    if(mode === 'pips') {
+        document.getElementById('modePips').style.display = 'block';
+        document.getElementById('modePrice').style.display = 'none';
+        document.getElementById('btnModePips').classList.add('on');
+        document.getElementById('btnModePrice').classList.remove('on');
+    } else {
+        document.getElementById('modePips').style.display = 'none';
+        document.getElementById('modePrice').style.display = 'block';
+        document.getElementById('btnModePips').classList.remove('on');
+        document.getElementById('btnModePrice').classList.add('on');
+    }
+}
+
+function calcPips(){
+    const entry = parseFloat(document.getElementById('tEntry').value);
+    const slPrice = parseFloat(document.getElementById('tSLPrice').value);
+    const tpPrice = parseFloat(document.getElementById('tTPPrice').value);
+    const mult = parseFloat(document.getElementById('tMult').value);
+    let slPips = 0, tpPips = 0;
+
+    if(!isNaN(entry) && !isNaN(slPrice)) {
+        slPips = Math.abs(entry - slPrice) * mult;
+        document.getElementById('tSLAuto').value = slPips.toFixed(2);
+        document.getElementById('tSL').value = slPips.toFixed(2);
+    }
+    if(!isNaN(entry) && !isNaN(tpPrice)) {
+        tpPips = Math.abs(entry - tpPrice) * mult;
+        document.getElementById('tTPAuto').value = tpPips.toFixed(2);
+        document.getElementById('tTP').value = tpPips.toFixed(2);
+    }
+    calcRR();
+}
+
 function calcRR(){const sl=parseFloat(document.getElementById('tSL').value)||0,tp=parseFloat(document.getElementById('tTP').value)||0;document.getElementById('tRR').value=(sl>0&&tp>0)?(tp/sl).toFixed(2):'0'}
 function calcRecovery(){const dd = S.ib>S.bal ? ((S.ib-S.bal)/S.ib)*100 : 0;document.getElementById('recDD').textContent=dd.toFixed(2)+'%';if(dd>0){const needRet = (dd / (100 - dd)) * 100;document.getElementById('recPct').textContent=needRet.toFixed(2)+'%';const wr=parseFloat(document.getElementById('dWR').value)/100 || 0.4;const rr=parseFloat(document.getElementById('dRR').value) || 2;const eR=wr*rr-(1-wr);if(eR>0){const trades=Math.ceil((needRet/100)/eR);document.getElementById('recTrades').textContent=trades;}} else { document.getElementById('recPct').textContent='0%'; document.getElementById('recTrades').textContent='0'; }}
 function calcProj(){const t=parseFloat(document.getElementById('mTarget').value)||0,wr=parseFloat(document.getElementById('mWR').value)/100||0,rr=parseFloat(document.getElementById('mRR').value)||0;const eR=wr*rr-(1-wr);if(t>0&&eR>0){const n=Math.ceil((t/100)/eR);document.getElementById('projRes').innerHTML=`মাসে প্রায় <span class="ha">${n}</span> ট্রেড নিতে হবে। প্রতি সপ্তাহে <span class="ha">${Math.ceil(n/4)}</span> ট্রেড।`;}else{document.getElementById('projRes').innerHTML=`স্ট্র্যাটেজি ম্যাথ চেক করুন।`;}}
@@ -412,14 +506,12 @@ async function addT(type){
     const t={id:Date.now().toString(),date:new Date().toLocaleDateString('en-CA'),pair,dir:document.getElementById('tDir').value,lot,rr:document.getElementById('tRR').value,session:document.getElementById('tSes').value,setup:document.getElementById('tSetup').value,psychology:document.getElementById('tPsy').value,rating:document.getElementById('tRat').value,note:document.getElementById('tNote').value,result:fr,type};
     S.trades.unshift(t);S.bal+=fr;S.hi=Math.max(S.hi,S.bal);if(fr<0)S.dl+=Math.abs(fr);document.getElementById('balV').value=S.bal;uBD();rTL();calcLot();document.getElementById('dBal').value=S.bal;calcDouble();
     
-    // ছবি আপলোড ও ট্রেড সেভ
     if(S.sURL){
         try{
             const fileInput = document.getElementById('tImg');
             let imgBase64 = "";
             if(fileInput.files && fileInput.files[0]){
                 const file = fileInput.files[0];
-                // ছবি কম্প্রেস করে base64 বানানো
                 const reader = new FileReader();
                 imgBase64 = await new Promise((resolve) => {
                     reader.onload = e => {
@@ -432,7 +524,7 @@ async function addT(type){
                             canvas.width = img.width * scale;
                             canvas.height = img.height * scale;
                             ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                            resolve(canvas.toDataURL('image/png').split(',')[1]); // base64 string
+                            resolve(canvas.toDataURL('image/png').split(',')[1]);
                         };
                         img.src = e.target.result;
                     };
@@ -440,11 +532,11 @@ async function addT(type){
                 });
             }
 
-            await fetch(S.sURL,{method:'POST',redirect:'follow',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'add',trade:{id:t.id,time:new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',hour12:false}),date:t.date,pair:t.pair,dir:t.dir,lot:t.lot,sl:0,tp:0,rr:t.rr,session:t.session,setup:t.setup,duration:document.getElementById('tDur').value,type:t.type,result:t.result,balanceBefore:S.bal-t.result,balanceAfter:S.bal,dailyLoss:S.dl,firm:S.firm,psychology:t.psychology,note:t.note,rating:t.rating,imageBase64:imgBase64}})});
+            await fetch(S.sURL,{method:'POST',redirect:'follow',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'add',trade:{id:t.id,time:new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',hour12:false}),date:t.date,pair:t.pair,dir:t.dir,lot:t.lot,sl:document.getElementById('tSL').value,tp:document.getElementById('tTP').value,rr:t.rr,session:t.session,setup:t.setup,duration:document.getElementById('tDur').value,type:t.type,result:t.result,balanceBefore:S.bal-t.result,balanceAfter:S.bal,dailyLoss:S.dl,firm:S.firm,psychology:t.psychology,note:t.note,rating:t.rating,imageBase64:imgBase64}})});
         }catch(e){}
     }
     
-    document.getElementById('tR').value='';document.getElementById('tL').value='';document.getElementById('tNote').value='';document.getElementById('tImg').value='';
+    document.getElementById('tR').value='';document.getElementById('tL').value='';document.getElementById('tNote').value='';document.getElementById('tImg').value='';document.getElementById('tEntry').value='';document.getElementById('tSLPrice').value='';document.getElementById('tTPPrice').value='';
     checklist.forEach((_, i) => { document.getElementById('chk'+i).checked = false; });
     toast(type==='win'?'ok':'err', type==='win'?'প্রফিট লগড':'লস লগড');
 }
@@ -463,6 +555,7 @@ function rstAll(){if(confirm('সব ট্রেড ডেটা মুছে �
 function calcComp(){const p=parseInt(document.getElementById('coP').value),r=parseInt(document.getElementById('coR').value),cR=parseFloat(document.getElementById('coCR').value),d=parseInt(document.getElementById('coD').value),dd=parseFloat(document.getElementById('coDD').value),wr=parseFloat(document.getElementById('coW').value)/100,rr=parseFloat(document.getElementById('coRR').value),td=parseInt(document.getElementById('coTD').value);let thr=p<=50?10:p<=200?16:p<=500?23:31;const need=Math.max(0,thr-cR),daily=need/d,trades=d*td,eR=wr*rr-(1-wr);let nR=eR>0?Math.min((need/100)/(eR*trades)*100,15):99;const ml=nR>0?Math.floor(dd/nR):0,ror=ml>0?Math.pow(1-wr,ml)*100:100;document.getElementById('coNR').textContent=thr.toFixed(1)+'%';document.getElementById('coDD2').textContent=daily.toFixed(2)+'%';document.getElementById('coNR2').textContent=nR>15?'15%+':nR.toFixed(1)+'%';document.getElementById('coRoR').textContent=ror.toFixed(1)+'%';document.getElementById('coRankNum').textContent=r;document.getElementById('coRankMsg').textContent=r<=10?'টপ ১০-এ আছেন!':r<=25?'টপ ১০ থেকে কাছে!':'টপ ১০ থেকে দূরে।';document.getElementById('coRankAdvice').textContent=`দৈনিক ${daily.toFixed(2)}% টার্গেট। প্রতি ট্রেডে ${nR.toFixed(1)}% রিস্ক।`;document.getElementById('coRankPct').textContent=cR+'%';document.getElementById('compStrat').innerHTML=`সর্বোচ্চ ${ml} বার 1R লস সহ্য করতে পারবেন। রিস্ক অফ রুইন: <span class="ha">${ror.toFixed(1)}%</span>।`;}
 
 // Initialize
+loadTheme();
 ldSet();
 tP2();
 updR();
