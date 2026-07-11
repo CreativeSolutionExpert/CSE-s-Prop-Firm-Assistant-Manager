@@ -47,8 +47,7 @@ body{font-family:'Noto Sans Bengali',sans-serif;background:var(--bg);color:var(-
 .mono{font-family:'JetBrains Mono',monospace}
 .dd-b{width:100%;height:8px;background:rgba(255,255,255,.05);border-radius:4px;overflow:hidden;margin:6px 0}
 .dd-f{height:100%;border-radius:4px;transition:width .5s}
-.dd-f.safe{background:var(--gr)}.dd-f.warn{background:var(--am)}.dd-f.danger{background:var(--rd);animation:pd 1.5s ease-in-out infinite}
-@keyframes pd{0%,100%{opacity:1}50%{opacity:.7}}
+.dd-f.safe{background:var(--gr)}.dd-f.warn{background:var(--am)}.dd-f.danger{background:var(--rd)}
 .ax{background:var(--bg2);border-radius:var(--r);padding:14px;margin-top:12px;border-left:3px solid var(--ac)}
 .ax.w{border-left-color:var(--am)}.ax.d{border-left-color:var(--rd)}.ax.p{border-left-color:var(--pu)}
 .ax h4{font-size:12px;font-weight:700;margin-bottom:6px;color:var(--t1)}
@@ -61,16 +60,13 @@ body{font-family:'Noto Sans Bengali',sans-serif;background:var(--bg);color:var(-
 .rsk-s{width:100%;-webkit-appearance:none;height:5px;background:var(--bd);border-radius:3px;outline:none}
 .rsk-s::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--ac);cursor:pointer;box-shadow:0 0 8px var(--acd)}
 .tl{max-height:350px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--bd2) transparent}
-.te{background:var(--bg2);border-radius:var(--rs);padding:10px;margin-bottom:6px;border:1px solid var(--bd);animation:si .3s ease-out}
-@keyframes si{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.te{background:var(--bg2);border-radius:var(--rs);padding:10px;margin-bottom:6px;border:1px solid var(--bd)}
 .te.win{border-left:3px solid var(--gr)}.te.loss{border-left:3px solid var(--rd)}
 .te-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
 .te-p{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600}
 .te-r{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700}
 .te-r.win{color:var(--gr)}.te-r.loss{color:var(--rd)}
-.te-d span{font-size:9px;color:var(--t3);margin-right:8px}
 .te-x{background:none;border:none;color:var(--t3);cursor:pointer;font-size:11px;padding:1px 5px;border-radius:3px}
-.te-x:hover{color:var(--rd);background:var(--rdd)}
 .comp-rank{display:flex;align-items:center;gap:14px;background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r);padding:16px;margin-bottom:10px}
 .comp-rank.danger{border-color:var(--rd);background:var(--rdd)}
 .rank-num{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:800;flex-shrink:0;background:linear-gradient(135deg,var(--ac),#0097a7);color:#000}
@@ -79,7 +75,6 @@ body{font-family:'Noto Sans Bengali',sans-serif;background:var(--bg);color:var(-
 .rank-info p{font-size:11px;color:var(--t3);line-height:1.4}
 .rank-pct{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:800;text-align:right}
 .es{text-align:center;padding:40px 20px;color:var(--t3)}
-.es i{font-size:40px;margin-bottom:12px;opacity:.2;display:block}
 .toast-c{position:fixed;top:16px;right:16px;z-index:9999;display:flex;flex-direction:column;gap:6px}
 .toast{background:var(--bg3);border:1px solid var(--bd2);border-radius:var(--rs);padding:10px 16px;font-size:12px;color:var(--t1);animation:ti .3s ease-out;display:flex;align-items:center;gap:8px;max-width:360px}
 .toast.ok{border-left:3px solid var(--gr)}.toast.err{border-left:3px solid var(--rd)}.toast.inf{border-left:3px solid var(--ac)}
@@ -91,13 +86,15 @@ body{font-family:'Noto Sans Bengali',sans-serif;background:var(--bg);color:var(-
 .modal{background:var(--bg3);border:1px solid var(--bd2);border-radius:var(--r);padding:24px;max-width:520px;width:92%;box-shadow:0 20px 60px rgba(0,0,0,.5);position:relative}
 .mc{position:absolute;top:14px;right:14px;background:none;border:none;color:var(--t3);font-size:18px;cursor:pointer;padding:3px 7px;border-radius:5px}
 .bal-edit{background:var(--bg2);border:1px solid var(--bd);color:var(--gr);font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;padding:5px 8px;border-radius:8px;width:140px;text-align:right;outline:none}
-.bal-edit:focus{border-color:var(--ac)}
 .qr{display:flex;gap:6px;margin-top:5px}
 .qr button{flex:1;padding:5px;background:var(--bg2);border:1px solid var(--bd);border-radius:5px;color:var(--t3);font-family:'JetBrains Mono',monospace;font-size:10px;cursor:pointer}
 .qr button.on{border-color:var(--ac);color:var(--ac);background:var(--acd)}
 .flex-sel{display:flex;gap:5px;align-items:center}
 .flex-sel select{flex:1}
 .add-btn{width:32px;height:32px;background:var(--bg2);border:1px solid var(--bd);color:var(--ac);border-radius:var(--rs);cursor:pointer;font-size:12px;flex-shrink:0}
+.chk-item{display:flex;align-items:center;gap:8px;background:var(--bg2);padding:8px;border-radius:6px;margin-bottom:6px;font-size:12px}
+.chk-item input{width:16px;height:16px;accent-color:var(--ac)}
+.chk-item button{background:none;border:none;color:var(--rd);cursor:pointer;margin-left:auto}
 </style>
 </head>
 <body>
@@ -108,7 +105,7 @@ body{font-family:'Noto Sans Bengali',sans-serif;background:var(--bg);color:var(-
 <div class="modal">
 <button class="mc" onclick="clS()"><i class="fas fa-xmark"></i></button>
 <h2><i class="fas fa-database tc" style="font-size:14px"></i> Google Sheets কানেক্ট</h2>
-<p style="font-size:11px;color:var(--t3);margin-bottom:16px">Apps Script Web App URL পেস্ট করুন। ট্রেড লগ ও ড্যাশবোর্ড অটো সেভ হবে।</p>
+<p style="font-size:11px;color:var(--t3);margin-bottom:16px">Apps Script Web App URL পেস্ট করুন।</p>
 <div class="ig"><label>Web App URL</label><input type="url" id="sURL" placeholder="https://script.google.com/macros/s/xxx/exec"></div>
 <div class="ig"><label>ইনিশিয়াল ব্যালেন্স ($)</label><input type="number" id="sIB" value="100000"></div>
 <div class="bg2">
@@ -149,9 +146,7 @@ body{font-family:'Noto Sans Bengali',sans-serif;background:var(--bg);color:var(-
 <div class="ir"><div class="ig"><label>ফেজ ১ টার্গেট (%)</label><input type="number" id="cT1" value="10"></div><div class="ig" id="cT2G"><label>ফেজ ২ টার্গেট (%)</label><input type="number" id="cT2" value="5"></div></div>
 <div class="ir"><div class="ig"><label>ফেজ ১ ম্যাক্স DD (%)</label><input type="number" id="cD1" value="10"></div><div class="ig" id="cD2G"><label>ফেজ ২ ম্যাক্স DD (%)</label><input type="number" id="cD2" value="10"></div></div>
 </div>
-<div class="crd">
-<div class="ir3"><div class="ig"><label>অ্যাকাউন্ট ($)</label><input type="number" id="cAS" value="100000"></div><div class="ig"><label>ফি ($)</label><input type="number" id="cFee" value="500"></div><div class="ig"><label>প্রফিট স্প্লিট (%)</label><input type="number" id="cPS" value="80"></div></div>
-</div>
+<div class="crd"><div class="ir3"><div class="ig"><label>অ্যাকাউন্ট ($)</label><input type="number" id="cAS" value="100000"></div><div class="ig"><label>ফি ($)</label><input type="number" id="cFee" value="500"></div><div class="ig"><label>প্রফিট স্প্লিট (%)</label><input type="number" id="cPS" value="80"></div></div></div>
 <button class="btn-run" id="runB" onclick="runSim()"><i class="fas fa-play"></i> সিমুলেশন চালান</button>
 </div>
 <div>
@@ -177,9 +172,8 @@ body{font-family:'Noto Sans Bengali',sans-serif;background:var(--bg);color:var(-
 <div class="calc-g">
 <div>
 <div class="crd">
-<!-- প্রপ ফার্ম রুল ইঞ্জিন -->
 <div class="ig">
-<label>প্রপ ফার্ম সিলেক্ট করুন (নিয়মাবলী)</label>
+<label>প্রপ ফার্ম সিলেক্ট করুন</label>
 <select id="firmSel" onchange="selFirm()">
 <option value="ftmo">FTMO (5% Daily, 10% Trailing)</option>
 <option value="fundingpips">Funding Pips (5% Daily, 10% Max)</option>
@@ -190,38 +184,33 @@ body{font-family:'Noto Sans Bengali',sans-serif;background:var(--bg);color:var(-
 <div id="customFirmRules" style="display:none;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px">
 <div class="ig"><label>ডেইলি DD (%)</label><input type="number" id="fDD" value="5" oninput="calcLot()"></div>
 <div class="ig"><label>ম্যাক্স DD (%)</label><input type="number" id="fMD" value="10" oninput="calcLot()"></div>
-<div class="ig"><label>DD টাইপ</label><select id="fDDT" onchange="calcLot()"><option value="trailing">Trailing</option><option value="balance">Static (Initial)</option></select></div>
+<div class="ig"><label>DD টাইপ</label><select id="fDDT" onchange="calcLot()"><option value="trailing">Trailing</option><option value="balance">Static</option></select></div>
 </div>
-
 <div class="ct"><i class="fas fa-wallet"></i> অ্যাকাউন্ট ব্যালেন্স</div>
 <div style="background:var(--bg2);border:1px solid var(--bd);border-radius:8px;padding:12px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
-<div>
-<div style="font-size:10px;color:var(--t3);margin-bottom:4px">বর্তমান ব্যালেন্স ($)</div>
-<input type="number" class="bal-edit" id="balV" value="100000" oninput="uBal(this.value)">
-</div>
-<div style="text-align:right">
-<div style="font-size:10px;color:var(--t3);margin-bottom:4px">পরিবর্তন</div>
-<div class="mono" id="balC" style="font-size:18px;font-weight:700;color:var(--gr)">$0</div>
-<button class="btn btn-ol" style="margin-top:5px;padding:4px 8px;font-size:10px" onclick="setInitial()"><i class="fas fa-rotate"></i> এটিকে ইনিশিয়াল করুন</button>
-</div>
+<div><div style="font-size:10px;color:var(--t3)">বর্তমান ব্যালেন্স ($)</div><input type="number" class="bal-edit" id="balV" value="100000" oninput="uBal(this.value)"></div>
+<div style="text-align:right"><div style="font-size:10px;color:var(--t3)">পরিবর্তন</div><div class="mono" id="balC" style="font-size:18px;font-weight:700;color:var(--gr)">$0</div><button class="btn btn-ol" style="margin-top:5px;padding:4px 8px;font-size:10px" onclick="setInitial()"><i class="fas fa-rotate"></i> ইনিশিয়াল করুন</button></div>
 </div>
 </div>
 
 <div class="crd">
 <div class="ct"><i class="fas fa-calculator"></i> লট সাইজ ক্যালকুলেটর</div>
 <div class="ig"><label>রিস্ক: <span id="riskD" class="mono tc">1.0%</span></label><input type="range" id="riskS" min="0.1" max="5" step="0.1" value="1" oninput="uRD();calcLot()"><div class="qr"><button onclick="sR(0.5)">0.5%</button><button onclick="sR(1)" class="on">1.0%</button><button onclick="sR(1.5)">1.5%</button><button onclick="sR(2.0)">2.0%</button></div></div>
-<div class="ir"><div class="ig"><label>SL (পিপস)</label><input type="number" id="slP" value="30" oninput="calcLot()"></div><div class="ig"><label>পেয়ারের পিপ ভ্যালু ($)</label><select id="prS" onchange="calcLot()"><option value="10">ফরেক্স ($10)</option><option value="1">GOLD ($1)</option><option value="custom">কাস্টম</option></select></div></div>
-<div class="ig" id="cpG" style="display:none"><input type="number" id="cpV" value="10" step="0.01" oninput="calcLot()"></div>
+<div class="ir"><div class="ig"><label>SL (পিপস)</label><input type="number" id="slP" value="30" oninput="calcLot()"></div><div class="ig"><label>পিপ ভ্যালু ($)</label><select id="prS" onchange="calcLot()"><option value="10">ফরেক্স ($10)</option><option value="1">GOLD ($1)</option><option value="custom">কাস্টম</option></select></div></div>
+<div class="ig" id="cpG" style="display:none"><input type="number" id="cpV" value="10" oninput="calcLot()"></div>
 <div style="text-align:center;padding:16px;background:linear-gradient(135deg,rgba(0,229,255,.08),rgba(0,230,118,.05));border:1px solid rgba(0,229,255,.2);border-radius:var(--r)">
 <div style="font-size:10px;color:var(--t3)">রিকমেন্ডেড লট</div><div class="mono" style="font-size:34px;font-weight:700;color:var(--ac)" id="lotV">0.33</div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px"><div style="background:rgba(0,0,0,.3);padding:8px;border-radius:8px"><div style="font-size:9px;color:var(--t3)">রিস্ক</div><div class="mono" style="font-size:15px;font-weight:600" id="riskA">$1,000</div></div><div style="background:rgba(0,0,0,.3);padding:8px;border-radius:8px"><div style="font-size:9px;color:var(--t3)">পিপ ভ্যালু</div><div class="mono" style="font-size:15px;font-weight:600" id="pipV">$10.00</div></div></div>
 </div>
 </div>
 
-<div class="crd" style="border-color:var(--pu)">
-<div class="ct" style="color:var(--pu)"><i class="fas fa-layer-group"></i> Trade Management (Partial Close) <span class="bg" style="background:var(--pud);color:var(--pu)">Pro</span></div>
-<div class="ir3"><div class="ig"><label>মোট লট</label><input type="number" id="pcLot" value="0.33" oninput="calcPartial()"></div><div class="ig"><label>TP1 এ ক্লোজ (%)</label><select id="pcP1" onchange="calcPartial()"><option value="50">50%</option><option value="33">33%</option><option value="25">25%</option></select></div><div class="ig"><label>TP1 পিপস</label><input type="number" id="pcTP1" value="30" oninput="calcPartial()"></div></div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px"><div style="background:rgba(179,136,255,.05);border:1px dashed var(--pu);padding:10px;border-radius:8px;text-align:center"><div style="font-size:9px;color:var(--t3)">TP1 লট (ক্লোজ)</div><div class="mono" style="font-size:18px;font-weight:700;color:var(--pu)" id="pcL1">0.16</div></div><div style="background:rgba(0,230,118,.05);border:1px dashed var(--gr);padding:10px;border-radius:8px;text-align:center"><div style="font-size:9px;color:var(--t3)">TP2 লট (রান)</div><div class="mono" style="font-size:18px;font-weight:700;color:var(--gr)" id="pcL2">0.16</div></div></div>
+<!-- প্রি-ট্রেড চেকলিস্ট -->
+<div class="crd" style="border-color:var(--am)">
+<div class="ct" style="color:var(--am)"><i class="fas fa-list-check"></i> প্রি-ট্রেড চেকলিস্ট</div>
+<div id="checklistItems"></div>
+<div style="display:flex;gap:8px;margin-top:8px">
+<input type="text" id="newChk" placeholder="নতুন চেকলিস্ট আইটেম..." style="flex:1;background:var(--bg2);border:1px solid var(--bd);border-radius:8px;padding:8px;color:var(--t1);font-size:12px;outline:none">
+<button class="btn btn-ol" onclick="addCheckItem()"><i class="fas fa-plus"></i></button>
+</div>
 </div>
 
 <div class="crd">
@@ -229,36 +218,56 @@ body{font-family:'Noto Sans Bengali',sans-serif;background:var(--bg);color:var(-
 <div class="ir3"><div class="ig"><label>পেয়ার</label><input type="text" id="tP" value="EURUSD"></div><div class="ig"><label>টাইপ</label><select id="tDir"><option>Buy</option><option>Sell</option></select></div><div class="ig"><label>লট</label><input type="number" id="tL" step="0.01" placeholder="অটো"></div></div>
 <div class="ir3"><div class="ig"><label>SL (পিপস)</label><input type="number" id="tSL" value="0" oninput="calcRR()"></div><div class="ig"><label>TP (পিপস)</label><input type="number" id="tTP" value="0" oninput="calcRR()"></div><div class="ig"><label>RR (অটো)</label><input type="text" id="tRR" value="0" readonly style="color:var(--gr)"></div></div>
 <div class="ir3"><div class="ig"><label>সেশন</label><select id="tSes"><option>Asian</option><option>London</option><option>New York</option></select></div><div class="ig"><label>সেটআপ</label><div class="flex-sel"><select id="tSetup"></select><button class="add-btn" onclick="addCustomOpt('setup')"><i class="fas fa-plus"></i></button></div></div><div class="ig"><label>সময়কাল</label><input type="text" id="tDur" placeholder="2h 30m"></div></div>
-<div class="ir"><div class="ig"><label>রেজাল্ট ($)</label><input type="number" id="tR" step="0.01" placeholder="+500"></div><div class="ig"><label>মানসিকতা</label><div class="flex-sel"><select id="tPsy"></select><button class="add-btn" onclick="addCustomOpt('psy')"><i class="fas fa-plus"></i></button></div></div></div>
+<div class="ir3"><div class="ig"><label>রেটিং</label><select id="tRat"><option>A+</option><option>A</option><option>B</option><option>C</option></select></div><div class="ig"><label>রেজাল্ট ($)</label><input type="number" id="tR" step="0.01" placeholder="+500"></div><div class="ig"><label>মানসিকতা</label><div class="flex-sel"><select id="tPsy"></select><button class="add-btn" onclick="addCustomOpt('psy')"><i class="fas fa-plus"></i></button></div></div></div>
 <div class="ig"><label>মন্তব্য</label><textarea id="tNote" rows="2" placeholder="ট্রেন্ডলাইন ব্রেক..."></textarea></div>
 <div class="bg2"><button class="btn btn-gr btn-f" onclick="addT('win')"><i class="fas fa-check"></i> প্রফিট</button><button class="btn btn-rd btn-f" onclick="addT('loss')"><i class="fas fa-times"></i> লস</button></div>
 </div>
 </div>
 
 <div>
+<!-- রিকভারি ও প্রোজেকশন -->
+<div class="crd" style="border-color:var(--pu)">
+<div class="ct" style="color:var(--pu)"><i class="fas fa-chart-line"></i> রিকভারি ও টার্গেট প্ল্যান</div>
+<div class="ax p" style="margin-top:0">
+<h4>ড্রডাউন রিকভারি</h4>
+<p>বর্তমান ড্রডাউন: <span class="ha" id="recDD">0%</span><br>ফিরে আসতে প্রয়োজন: <span class="ha" id="recPct">0%</span> রিটার্ন<br>আপনার বর্তমান স্ট্র্যাটেজিতে প্রায় <span class="ha" id="recTrades">0</span> ট্রেড লাগবে।</p>
+</div>
+<div class="ax w">
+<h4>মাসিক টার্গেট প্রোজেকশন</h4>
+<div class="ir3" style="margin-bottom:8px">
+<input type="number" id="mTarget" value="10" placeholder="মাসিক টার্গেট (%)" oninput="calcProj()" style="background:var(--bg2);border:1px solid var(--bd);border-radius:8px;padding:8px;color:var(--t1)">
+<input type="number" id="mWR" value="40" placeholder="উইন রেট (%)" oninput="calcProj()" style="background:var(--bg2);border:1px solid var(--bd);border-radius:8px;padding:8px;color:var(--t1)">
+<input type="number" id="mRR" value="2" placeholder="রিস্ক:রিওয়ার্ড" oninput="calcProj()" style="background:var(--bg2);border:1px solid var(--bd);border-radius:8px;padding:8px;color:var(--t1)">
+</div>
+<p id="projRes">মাসে প্রায় <span class="ha">--</span> ট্রেড নিতে হবে। প্রতি সপ্তাহে <span class="ha">--</span> ট্রেড।</p>
+</div>
+</div>
+
+<!-- ডাবলিং -->
 <div class="crd" style="border-color:var(--am)">
 <div class="ct"><i class="fas fa-rocket" style="color:var(--am)"></i> অ্যাকাউন্ট ডাবলিং ক্যালকুলেটর</div>
 <div class="ir3"><div class="ig"><label>ব্যালেন্স ($)</label><input type="number" id="dBal" value="100000" oninput="calcDouble()"></div><div class="ig"><label>উইন রেট (%)</label><input type="number" id="dWR" value="40" oninput="calcDouble()"></div><div class="ig"><label>রিস্ক:রিওয়ার্ড</label><input type="number" id="dRR" value="2" step="0.1" oninput="calcDouble()"></div></div>
 <div class="ir3"><div class="ig"><label>রিস্ক (%)</label><input type="number" id="dRisk" value="1" step="0.1" oninput="calcDouble()"></div><div class="ig"><label>সপ্তাহে ট্রেড</label><input type="number" id="dTPW" value="5" oninput="calcDouble()"></div><div class="ig"><label>SL (পিপস)</label><input type="number" id="dSL" value="30" oninput="calcDouble()"></div></div>
 <div class="rg" style="grid-template-columns:repeat(2,1fr);margin-top:10px">
-<div class="rc hl" style="border-color:var(--am);background:var(--amd)"><div class="rl">ডাবল হতে ট্রেড</div><div class="rv ta" id="dblT">--</div></div>
+<div class="rc hl" style="border-color:var(--am)"><div class="rl">ডাবল হতে ট্রেড</div><div class="rv ta" id="dblT">--</div></div>
 <div class="rc"><div class="rl">সময় লাগবে</div><div class="rv tc" id="dblTime">--</div></div>
 <div class="rc"><div class="rl">প্রতি ট্রেডে লট</div><div class="rv tp" id="dblLot">--</div></div>
 <div class="rc"><div class="rl">প্রতি ট্রেডে $</div><div class="rv tr" id="dblRR">--</div></div>
 </div>
 </div>
 
+<!-- মেট্রিক্স -->
 <div class="crd">
-<div class="ct"><i class="fas fa-chart-pie"></i> Pro Metrics & ড্রডাউন <span class="bg">অটো হিসাব</span></div>
+<div class="ct"><i class="fas fa-chart-pie"></i> Pro Metrics & ড্রডাউন</div>
 <div class="rg" style="grid-template-columns:repeat(2,1fr)">
-<div class="rc"><div class="rl">Profit Factor</div><div class="rv tp" id="mPF">0.00</div><div class="rs">>1.5 ভালো</div></div>
-<div class="rc"><div class="rl">Expectancy ($)</div><div class="rv tc" id="mEX">$0</div><div class="rs">প্রতি ট্রেডে গড়</div></div>
+<div class="rc"><div class="rl">Profit Factor</div><div class="rv tp" id="mPF">0.00</div></div>
+<div class="rc"><div class="rl">Expectancy ($)</div><div class="rv tc" id="mEX">$0</div></div>
 <div class="rc"><div class="rl">ডেইলি DD</div><div class="rv tr" id="ddDT">$0 / $5K</div><div class="dd-b" style="margin-top:5px"><div class="dd-f safe" id="ddDB" style="width:0%"></div></div></div>
 <div class="rc"><div class="rl">ম্যাক্স DD</div><div class="rv tr" id="ddMT">$0 / $10K</div><div class="dd-b" style="margin-top:5px"><div class="dd-f safe" id="ddMB" style="width:0%"></div></div></div>
 </div>
-<div class="ax" id="actB" style="margin-top:12px"><h4><i class="fas fa-lightbulb"></i> এখন কী করবেন?</h4><p id="actT">নিরাপদ। প্ল্যান অনুযায়ী ট্রেড করুন।</p></div>
 </div>
 
+<!-- হিস্ট্রি -->
 <div class="crd">
 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
 <div class="ct" style="margin-bottom:0"><i class="fas fa-list-check"></i> ট্রেড হিস্ট্রি</div>
@@ -311,14 +320,10 @@ body{font-family:'Noto Sans Bengali',sans-serif;background:var(--bg);color:var(-
 
 <script>
 let S={bal:100000,ib:100000,hi:100000,rp:1,dl:0,trades:[],sURL:'',firm:'ftmo'};
-const Firms = {
-    ftmo: { dd: 5, md: 10, mdt: 'trailing' },
-    fundingpips: { dd: 5, md: 10, mdt: 'balance' },
-    topstep: { dd: 4, md: 8, mdt: 'balance' },
-    custom: { dd: 5, md: 10, mdt: 'trailing' }
-};
+const Firms = { ftmo: { dd: 5, md: 10, mdt: 'trailing' }, fundingpips: { dd: 5, md: 10, mdt: 'balance' }, topstep: { dd: 4, md: 8, mdt: 'balance' }, custom: { dd: 5, md: 10, mdt: 'trailing' } };
 let customSetups = JSON.parse(localStorage.getItem('customSetups')) || ['Breakout', 'Trend Pullback', 'Reversal', 'Range'];
 let customPsy = JSON.parse(localStorage.getItem('customPsy')) || ['A+ Setup', 'FOMO', 'Revenge', 'Early Entry'];
+let checklist = JSON.parse(localStorage.getItem('ptcl')) || ['ট্রেন্ড ক্লিয়ার', 'নিউজ নেই', 'সাপোর্ট/রেজিস্ট্যান্স কনফার্ম'];
 
 function sMT(t,el){document.querySelectorAll('.tpc').forEach(p=>p.classList.remove('on'));document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));document.getElementById('tp-'+t).classList.add('on');el.classList.add('on')}
 function toast(t,m){const c=document.getElementById('TC');const d=document.createElement('div');d.className='toast '+t;d.innerHTML='<i class="fas '+(t==='ok'?'fa-check-circle':'fa-circle-info')+'"></i> '+m;c.appendChild(d);setTimeout(()=>{d.remove()},3000)}
@@ -335,29 +340,23 @@ function svS(){
     localStorage.setItem('pmS',JSON.stringify({u:S.sURL,b:S.ib}));
     clS();
     if(S.sURL){uSI('loading');toast('inf','কানেক্ট হচ্ছে...');ldTrades();}
-    else{uSI('disconnected');toast('ok','সেভ হয়েছে');}
+    else{uSI('disconnected');}
 }
-function uSI(s){
-    const e=document.getElementById('syncI'),t=document.getElementById('syncT');
-    e.className='sb '+(s==='connected'?'safe':s==='loading'?'warn':'danger');
-    t.textContent=s==='connected'?'কানেক্টেড':s==='loading'?'সিঙ্ক...':'কানেক্ট নেই';
-}
+function uSI(s){const e=document.getElementById('syncI'),t=document.getElementById('syncT');e.className='sb '+(s==='connected'?'safe':s==='loading'?'warn':'danger');t.textContent=s==='connected'?'কানেক্টেড':s==='loading'?'সিঙ্ক...':'কানেক্ট নেই';}
 
-// লোকাল স্টোরেজ থেকে লোড এবং অটো-কানেক্ট
 function ldSet(){
     try{
         const s=JSON.parse(localStorage.getItem('pmS'));
         if(s){
-            if(s.u) S.sURL=s.u;
-            if(s.b){S.ib=s.b;S.bal=s.b;S.hi=s.b;document.getElementById('sIB').value=s.b}
+            if(s.u)S.sURL=s.u;
+            if(s.b){S.ib=s.b;S.bal=s.b;S.hi=s.b;}
         }
         document.getElementById('balV').value=S.bal;
-        uBD();loadDropdowns();calcLot();rTL();
-        if(S.sURL){
-            uSI('connected'); 
-            ldTrades(); // পেজ লোড হলেই অটো কানেক্ট হবে
-        }
-    }catch(e){loadDropdowns();calcLot();rTL();}
+        uBD();loadDropdowns();renderChecklist();calcLot();rTL();
+        if(S.sURL){uSI('connected');ldTrades();}
+    }catch(e){
+        loadDropdowns();renderChecklist();calcLot();rTL();
+    }
 }
 
 async function ldTrades(){
@@ -366,12 +365,11 @@ async function ldTrades(){
         const r=await fetch(S.sURL+'?action=getAll',{redirect:'follow'});
         const d=await r.json();
         if(d.status==='success'){
-            S.trades=d.trades.map(t=>({id:t.id,pair:t.pair,dir:t.dir,lot:+t.lot,rr:t.rr,session:t.session,setup:t.setup,psychology:t.psychology,note:t.note,result:+t.result,type:t.type,date:t.date}));
+            S.trades=d.trades.map(t=>({id:t.id,pair:t.pair,dir:t.dir,lot:+t.lot,rr:t.rr,session:t.session,setup:t.setup,psychology:t.psychology,note:t.note,rating:t.rating,result:+t.result,type:t.type,date:t.date}));
             if(S.trades.length>0){
                 const l=S.trades[0];
-                // ব্যালেন্স শিট থেকে নেওয়া
-                S.bal = l.balanceAfter ? parseFloat(l.balanceAfter) : S.ib;
-                S.hi = Math.max(S.ib, S.bal);
+                S.bal=l.balanceAfter?parseFloat(l.balanceAfter):S.ib;
+                S.hi=Math.max(S.ib,S.bal);
             }
             document.getElementById('balV').value=S.bal;
             uBD();uSI('connected');rTL();calcLot();
@@ -382,13 +380,11 @@ async function ldTrades(){
 function loadDropdowns(){document.getElementById('tSetup').innerHTML=customSetups.map(o=>`<option>${o}</option>`).join('');document.getElementById('tPsy').innerHTML=customPsy.map(o=>`<option>${o}</option>`).join('');}
 function addCustomOpt(type){let val=prompt('নতুন অপশন:');if(val&&val.trim()!==''){val=val.trim();if(type==='setup'&&!customSetups.includes(val)){customSetups.push(val);localStorage.setItem('customSetups',JSON.stringify(customSetups));}if(type==='psy'&&!customPsy.includes(val)){customPsy.push(val);localStorage.setItem('customPsy',JSON.stringify(customPsy));}loadDropdowns();if(type==='setup')document.getElementById('tSetup').value=val;if(type==='psy')document.getElementById('tPsy').value=val;}}
 
-function selFirm() {
-    const f = document.getElementById('firmSel').value;
-    S.firm = f;
-    document.getElementById('customFirmRules').style.display = f === 'custom' ? 'grid' : 'none';
-    calcLot();
-}
+function renderChecklist(){const c=document.getElementById('checklistItems');c.innerHTML=checklist.map((item,i)=>`<div class="chk-item"><input type="checkbox" id="chk${i}"><span style="flex:1">${item}</span><button onclick="delCheck(${i})"><i class="fas fa-times"></i></button></div>`).join('');}
+function addCheckItem(){const v=document.getElementById('newChk').value.trim();if(v){checklist.push(v);localStorage.setItem('ptcl',JSON.stringify(checklist));document.getElementById('newChk').value='';renderChecklist();}}
+function delCheck(i){checklist.splice(i,1);localStorage.setItem('ptcl',JSON.stringify(checklist));renderChecklist();}
 
+function selFirm(){const f=document.getElementById('firmSel').value;S.firm=f;document.getElementById('customFirmRules').style.display=f==='custom'?'grid':'none';calcLot();}
 function tP2(){const v=document.getElementById('cType').value==='two';document.getElementById('cT2G').style.display=v?'':'none';document.getElementById('cD2G').style.display=v?'':'none';document.getElementById('r2G').style.display=v?'':'none'}
 function updR(){document.getElementById('r1V').textContent=parseFloat(document.getElementById('r1').value).toFixed(2)+'%';document.getElementById('r2V').textContent=parseFloat(document.getElementById('r2').value).toFixed(2)+'%'}
 
@@ -396,98 +392,136 @@ function mcSim(wr,rr,risk,target,maxDD,isTrail,nt){let bal=100,hi=100,trades=0;f
 function runSim(){
     const wr=parseFloat(document.getElementById('cWR').value)/100,rr=parseFloat(document.getElementById('cRR').value),tpm=parseFloat(document.getElementById('cTPM').value),t1=parseFloat(document.getElementById('cT1').value),t2=parseFloat(document.getElementById('cT2').value),d1=parseFloat(document.getElementById('cD1').value),d2=parseFloat(document.getElementById('cD2').value),trail=false,fee=parseFloat(document.getElementById('cFee').value),ps=parseFloat(document.getElementById('cPS').value)/100,as=parseFloat(document.getElementById('cAS').value),r1=parseFloat(document.getElementById('r1').value)/100,r2=parseFloat(document.getElementById('r2').value)/100,isTwo=document.getElementById('cType').value==='two',N=1000;
     let pass=0,attArr=[],trArr=[];
-    for(let i=0;i<N;i++){let attempts=0,tTrades=0,funded=false;while(attempts<5){attempts++;let r1p=mcSim(wr,rr,r1,t1,d1,trail,200);tTrades+=r1p.trades;if(!r1p.pass)continue;if(isTwo){let r2p=mcSim(wr,rr,r2,t2,d2,trail,200);tTrades+=r2p.trades;if(!r2p.pass)continue;}funded=true;break;}if(funded){pass++;attArr.push(attempts);trArr.push(tTrades);}else{attArr.push(5);trArr.push(tTrades);}}
-    const pr=(pass/N*100);attArr.sort((a,b)=>a-b);trArr.sort((a,b)=>a-b);
+    for(let i=0;i<N;i++){
+        let attempts=0,tTrades=0,funded=false;
+        while(attempts<5){
+            attempts++;
+            let r1p=mcSim(wr,rr,r1,t1,d1,trail,200);
+            tTrades+=r1p.trades;
+            if(!r1p.pass)continue;
+            if(isTwo){
+                let r2p=mcSim(wr,rr,r2,t2,d2,trail,200);
+                tTrades+=r2p.trades;
+                if(!r2p.pass)continue;
+            }
+            funded=true;break;
+        }
+        if(funded){pass++;attArr.push(attempts);trArr.push(tTrades);}
+        else{attArr.push(5);trArr.push(tTrades);}
+    }
+    const pr=(pass/N*100);
+    attArr.sort((a,b)=>a-b);trArr.sort((a,b)=>a-b);
     const expAtt=attArr[Math.floor(N*0.9)]||0,expTr=trArr[Math.floor(N*0.9)]||0,expTm=expTr/tpm,maxC=expAtt*fee,bePct=maxC>0?(maxC/(as*ps)*100):0;
-    document.getElementById('resPR').textContent=pr.toFixed(0)+'%';document.getElementById('resAT').textContent=expAtt;document.getElementById('resTT').textContent=Math.round(expTr);document.getElementById('resTM').textContent=expTm.toFixed(1)+'M';document.getElementById('resEC').textContent='$'+fN(maxC);document.getElementById('resBE').textContent=bePct.toFixed(1)+'%';
+    document.getElementById('resPR').textContent=pr.toFixed(0)+'%';
+    document.getElementById('resAT').textContent=expAtt;
+    document.getElementById('resTT').textContent=Math.round(expTr);
+    document.getElementById('resTM').textContent=expTm.toFixed(1)+'M';
+    document.getElementById('resEC').textContent='$'+fN(maxC);
+    document.getElementById('resBE').textContent=bePct.toFixed(1)+'%';
     document.getElementById('insightT').innerHTML=`${r1*100}% রিস্কে পাস রেট <span class="ha" style="color:var(--am)">${pr.toFixed(0)}%</span>। ফান্ডেড হতে <span class="ha" style="color:var(--am)">${expAtt}টি</span> অ্যাটেম্পট ও <span class="ha" style="color:var(--am)">${expTr}টি</span> ট্রেড লাগতে পারে।`;
 }
 
-// ব্যালেন্স পরিবর্তন ফাংশন
-function uBal(v){
-    S.bal = parseFloat(v) || 0;
-    if(S.bal > S.hi) S.hi = S.bal;
-    uBD();calcLot();
-    document.getElementById('dBal').value=S.bal;
-    calcDouble();
-}
-function setInitial(){
-    S.ib = S.bal;
-    S.hi = S.bal;
-    S.dl = 0;
-    S.trades = [];
-    uBD();calcLot();rTL();
-    document.getElementById('sIB').value=S.ib;
-    localStorage.setItem('pmS',JSON.stringify({u:S.sURL,b:S.ib}));
-    toast('ok','এই ব্যালেন্সটিকে ইনিশিয়াল করা হয়েছে');
-}
-function uBD(){
-    const c=S.bal-S.ib;const el=document.getElementById('balC');
-    if(c>0){el.textContent='+$'+fN(c);el.style.color='var(--gr)'}
-    else if(c<0){el.textContent='-$'+fN(Math.abs(c));el.style.color='var(--rd)'}
-    else{el.textContent='$0';el.style.color='var(--t2)'}
-}
+function uBal(v){S.bal=parseFloat(v)||0;if(S.bal>S.hi)S.hi=S.bal;uBD();calcLot();document.getElementById('dBal').value=S.bal;calcDouble();calcRecovery();}
+function setInitial(){S.ib=S.bal;S.hi=S.bal;S.dl=0;S.trades=[];uBD();calcLot();rTL();document.getElementById('sIB').value=S.ib;localStorage.setItem('pmS',JSON.stringify({u:S.sURL,b:S.ib}));toast('ok','এই ব্যালেন্সটিকে ইনিশিয়াল করা হয়েছে');}
+function uBD(){const c=S.bal-S.ib;const el=document.getElementById('balC');if(c>0){el.textContent='+$'+fN(c);el.style.color='var(--gr)'}else if(c<0){el.textContent='-$'+fN(Math.abs(c));el.style.color='var(--rd)'}else{el.textContent='$0';el.style.color='var(--t2)'}}
 function gPV(){const s=document.getElementById('prS').value;if(s==='custom'){document.getElementById('cpG').style.display='block';return parseFloat(document.getElementById('cpV').value)||10}document.getElementById('cpG').style.display='none';return parseFloat(s)}
 
 function calcLot(){
     S.rp=parseFloat(document.getElementById('riskS').value);
     const sl=parseFloat(document.getElementById('slP').value)||1,pv=gPV(),ra=S.bal*(S.rp/100),ls=sl>0?ra/(sl*pv):0;
-    document.getElementById('lotV').textContent=ls.toFixed(2);document.getElementById('riskA').textContent='$'+fN(ra);document.getElementById('pipV').textContent='$'+pv.toFixed(2);
+    document.getElementById('lotV').textContent=ls.toFixed(2);
     if(parseFloat(document.getElementById('tSL').value)===0){document.getElementById('tSL').value=sl;calcRR()}
     if(parseFloat(document.getElementById('tL').value)===0||document.getElementById('tL').value===''){document.getElementById('tL').value=ls.toFixed(2)}
-    document.getElementById('pcLot').value=ls.toFixed(2);calcPartial();
-    
-    const firm = S.firm || 'ftmo';
-    let rules = Firms[firm];
-    if(firm === 'custom') {
-        rules = { dd: parseFloat(document.getElementById('fDD').value), md: parseFloat(document.getElementById('fMD').value), mdt: document.getElementById('fDDT').value };
-    }
-    
-    const ddLimit = S.ib * (rules.dd/100);
-    const mdLimit = S.ib * (rules.md/100);
-    const dls = S.dl;
-    let mls = rules.mdt === 'trailing' ? Math.max(0, S.hi - S.bal) : Math.max(0, S.ib - S.bal);
-    
+    const firm=S.firm||'ftmo';
+    let rules=Firms[firm];
+    if(firm==='custom'){rules={dd:parseFloat(document.getElementById('fDD').value),md:parseFloat(document.getElementById('fMD').value),mdt:document.getElementById('fDDT').value};}
+    const ddLimit=S.ib*(rules.dd/100),mdLimit=S.ib*(rules.md/100);
+    const dls=S.dl;
+    let mls=rules.mdt==='trailing'?Math.max(0,S.hi-S.bal):Math.max(0,S.ib-S.bal);
     document.getElementById('ddDB').style.width=Math.min(100,(dls/ddLimit)*100)+'%';
     document.getElementById('ddMB').style.width=Math.min(100,(mls/mdLimit)*100)+'%';
     document.getElementById('ddDT').textContent='$'+fN(dls)+' / $'+fN(ddLimit);
     document.getElementById('ddMT').textContent='$'+fN(mls)+' / $'+fN(mdLimit);
-    document.getElementById('ddDB').className = 'dd-f ' + ((dls/ddLimit*100)>=80?'danger':(dls/ddLimit*100)>=50?'warn':'safe');
-    document.getElementById('ddMB').className = 'dd-f ' + ((mls/mdLimit*100)>=80?'danger':(mls/mdLimit*100)>=50?'warn':'safe');
-    calcProMetrics();
+    document.getElementById('ddDB').className='dd-f '+((dls/ddLimit*100)>=80?'danger':(dls/ddLimit*100)>=50?'warn':'safe');
+    document.getElementById('ddMB').className='dd-f '+((mls/mdLimit*100)>=80?'danger':(mls/mdLimit*100)>=50?'warn':'safe');
+    calcProMetrics();calcRecovery();
 }
 function uRD(){document.getElementById('riskD').textContent=parseFloat(document.getElementById('riskS').value).toFixed(1)+'%'}
 function sR(v){document.getElementById('riskS').value=v;uRD();calcLot()}
 
 function calcRR(){const sl=parseFloat(document.getElementById('tSL').value)||0,tp=parseFloat(document.getElementById('tTP').value)||0;document.getElementById('tRR').value=(sl>0&&tp>0)?(tp/sl).toFixed(2):'0'}
-function calcPartial(){const lot=parseFloat(document.getElementById('pcLot').value)||0,p1=parseInt(document.getElementById('pcP1').value),l1=(lot*p1/100),l2=lot-l1;document.getElementById('pcL1').textContent=l1.toFixed(2);document.getElementById('pcL2').textContent=l2.toFixed(2);}
+
+function calcRecovery(){
+    const dd = S.ib>S.bal ? ((S.ib-S.bal)/S.ib)*100 : 0;
+    document.getElementById('recDD').textContent=dd.toFixed(2)+'%';
+    if(dd>0){
+        const needRet = (dd / (100 - dd)) * 100;
+        document.getElementById('recPct').textContent=needRet.toFixed(2)+'%';
+        const wr=parseFloat(document.getElementById('dWR').value)/100 || 0.4;
+        const rr=parseFloat(document.getElementById('dRR').value) || 2;
+        const eR=wr*rr-(1-wr);
+        if(eR>0){
+            const trades=Math.ceil((needRet/100)/eR);
+            document.getElementById('recTrades').textContent=trades;
+        }
+    } else { 
+        document.getElementById('recPct').textContent='0%'; 
+        document.getElementById('recTrades').textContent='0'; 
+    }
+}
+function calcProj(){
+    const t=parseFloat(document.getElementById('mTarget').value)||0,
+    wr=parseFloat(document.getElementById('mWR').value)/100||0,
+    rr=parseFloat(document.getElementById('mRR').value)||0;
+    const eR=wr*rr-(1-wr);
+    if(t>0&&eR>0){
+        const n=Math.ceil((t/100)/eR);
+        document.getElementById('projRes').innerHTML=`মাসে প্রায় <span class="ha">${n}</span> ট্রেড নিতে হবে। প্রতি সপ্তাহে <span class="ha">${Math.ceil(n/4)}</span> ট্রেড।`;
+    }else{
+        document.getElementById('projRes').innerHTML=`স্ট্র্যাটেজি ম্যাথ চেক করুন।`;
+    }
+}
 
 async function addT(type){
-    const pair=document.getElementById('tP').value.trim().toUpperCase();if(!pair){toast('err','পেয়ার লিখুন');return}
+    let allChecked = true;
+    checklist.forEach((_, i) => { if(!document.getElementById('chk'+i).checked) allChecked = false; });
+    if(!allChecked && checklist.length > 0){ toast('err','প্রি-ট্রেড চেকলিস্ট সম্পূর্ণ করুন!'); return; }
+
+    const pair=document.getElementById('tP').value.trim().toUpperCase();
+    if(!pair){toast('err','পেয়ার লিখুন');return}
     const lot=parseFloat(document.getElementById('tL').value)||0,result=parseFloat(document.getElementById('tR').value)||0;
     let fr=type==='win'?Math.abs(result):-Math.abs(result);
-    const t={id:Date.now().toString(),date:new Date().toLocaleDateString('en-CA'),pair,dir:document.getElementById('tDir').value,lot,rr:document.getElementById('tRR').value,session:document.getElementById('tSes').value,setup:document.getElementById('tSetup').value,psychology:document.getElementById('tPsy').value,note:document.getElementById('tNote').value,result:fr,type};
-    S.trades.unshift(t);S.bal+=fr;S.hi=Math.max(S.hi,S.bal);if(fr<0)S.dl+=Math.abs(fr);
-    document.getElementById('balV').value=S.bal;
-    uBD();rTL();calcLot();document.getElementById('dBal').value=S.bal;calcDouble();
+    const t={id:Date.now().toString(),date:new Date().toLocaleDateString('en-CA'),pair,dir:document.getElementById('tDir').value,lot,rr:document.getElementById('tRR').value,session:document.getElementById('tSes').value,setup:document.getElementById('tSetup').value,psychology:document.getElementById('tPsy').value,rating:document.getElementById('tRat').value,note:document.getElementById('tNote').value,result:fr,type};
+    S.trades.unshift(t);S.bal+=fr;S.hi=Math.max(S.hi,S.bal);if(fr<0)S.dl+=Math.abs(fr);document.getElementById('balV').value=S.bal;uBD();rTL();calcLot();document.getElementById('dBal').value=S.bal;calcDouble();
     
-    // গুগল শিটে সেভ
     if(S.sURL){
         try{
-            await fetch(S.sURL,{method:'POST',redirect:'follow',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'add',trade:{id:t.id,time:new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',hour12:false}),date:t.date,pair:t.pair,dir:t.dir,lot:t.lot,sl:0,tp:0,rr:t.rr,session:t.session,setup:t.setup,duration:document.getElementById('tDur').value,type:t.type,result:t.result,balanceBefore:S.bal-t.result,balanceAfter:S.bal,dailyLoss:S.dl,firm:S.firm,psychology:t.psychology,note:t.note}})});
+            await fetch(S.sURL,{method:'POST',redirect:'follow',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'add',trade:{id:t.id,time:new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',hour12:false}),date:t.date,pair:t.pair,dir:t.dir,lot:t.lot,sl:0,tp:0,rr:t.rr,session:t.session,setup:t.setup,duration:document.getElementById('tDur').value,type:t.type,result:t.result,balanceBefore:S.bal-t.result,balanceAfter:S.bal,dailyLoss:S.dl,firm:S.firm,psychology:t.psychology,note:t.note,rating:t.rating}})});
         }catch(e){}
     }
     
     document.getElementById('tR').value='';document.getElementById('tL').value='';document.getElementById('tNote').value='';
+    checklist.forEach((_, i) => { document.getElementById('chk'+i).checked = false; });
     toast(type==='win'?'ok':'err', type==='win'?'প্রফিট লগড':'লস লগড');
 }
 
 function rTL(){
     const l=document.getElementById('tLL');let f=S.trades;
     const filter=document.getElementById('tFilter').value;
-    if(filter!=='all'){const now=new Date();f=S.trades.filter(t=>{const d=new Date(t.date);if(filter==='month')return d.getMonth()===now.getMonth()&&d.getFullYear()===now.getFullYear();if(filter==='week'){const w1=Math.ceil((now.getDate()-now.getDay()+1)/7),w2=Math.ceil((d.getDate()-d.getDay()+1)/7);return d.getMonth()===now.getMonth()&&w1===w2;}return true})}
+    if(filter!=='all'){
+        const now=new Date();
+        f=S.trades.filter(t=>{
+            const d=new Date(t.date);
+            if(filter==='month')return d.getMonth()===now.getMonth()&&d.getFullYear()===now.getFullYear();
+            if(filter==='week'){
+                const w1=Math.ceil((now.getDate()-now.getDay()+1)/7),w2=Math.ceil((d.getDate()-d.getDay()+1)/7);
+                return d.getMonth()===now.getMonth()&&w1===w2;
+            }
+            return true;
+        });
+    }
     if(!f.length){l.innerHTML='<div class="es"><i class="fas fa-inbox"></i><p>কোনো ট্রেড নেই</p></div>';uTS(f);return}
-    l.innerHTML=f.map(t=>`<div class="te ${t.type}"><div class="te-h"><span class="te-p">${t.pair} <span style="font-size:9px;color:var(--t3)">${t.dir}</span></span><div style="display:flex;gap:6px"><span class="te-r ${t.type}">${t.result>0?'+':''}$${fN(t.result)}</span><button class="te-x" onclick="delT('${t.id}')"><i class="fas fa-xmark"></i></button></div></div><div class="te-d"><span>${t.lot} Lot</span><span>RR: ${t.rr}</span><span>${t.setup}</span></div><div style="font-size:10px;color:var(--t2);margin-top:5px;padding:5px;background:rgba(0,0,0,.2);border-radius:4px"><i class="fas fa-comment-dots" style="color:var(--ac);margin-right:4px"></i>${t.note||'No note'}</div></div>`).join('');
+    l.innerHTML=f.map(t=>`<div class="te ${t.type}"><div class="te-h"><span class="te-p">${t.pair} <span style="font-size:9px;color:var(--t3)">${t.dir || ''} | ${t.rating || '-'}</span></span><div style="display:flex;gap:6px"><span class="te-r ${t.type}">${t.result>0?'+':''}$${fN(t.result)}</span><button class="te-x" onclick="delT('${t.id}')"><i class="fas fa-xmark"></i></button></div></div><div class="te-d" style="font-size:9px;color:var(--t3);margin-bottom:4px"><span>${t.lot} Lot</span><span>RR: ${t.rr || 0}</span><span>${t.setup || '-'}</span></div><div style="font-size:10px;color:var(--t2);padding:5px;background:rgba(0,0,0,.2);border-radius:4px"><i class="fas fa-comment-dots" style="color:var(--ac);margin-right:4px"></i>${t.note||'No note'}</div></div>`).join('');
     uTS(f);
 }
 function delT(id){const i=S.trades.findIndex(t=>t.id===id);if(i===-1)return;const t=S.trades[i];S.bal-=t.result;if(t.result<0)S.dl-=Math.abs(t.result);S.trades.splice(i,1);S.hi=Math.max(S.ib,S.bal);document.getElementById('balV').value=S.bal;uBD();rTL();calcLot();document.getElementById('dBal').value=S.bal;calcDouble();}
@@ -519,7 +553,10 @@ function calcDouble(){
     const eR=wr*rr-(1-wr);
     if(eR<=0||risk<=0){document.getElementById('dblT').textContent='N/A';return;}
     const n=Math.log(2)/Math.log(1+eR*risk),weeks=n/tpw,lot=sl>0?(bal*risk)/(sl*pv):0,dol=bal*risk;
-    document.getElementById('dblT').textContent=Math.ceil(n);document.getElementById('dblTime').textContent=weeks.toFixed(1)+'W';document.getElementById('dblLot').textContent=lot.toFixed(2);document.getElementById('dblRR').textContent='$'+fN(dol);
+    document.getElementById('dblT').textContent=Math.ceil(n);
+    document.getElementById('dblTime').textContent=weeks.toFixed(1)+'W';
+    document.getElementById('dblLot').textContent=lot.toFixed(2);
+    document.getElementById('dblRR').textContent='$'+fN(dol);
 }
 
 function rstDly(){S.dl=0;calcLot();toast('ok','ডেইলি DD রিসেট হয়েছে')}
@@ -527,17 +564,27 @@ function rstAll(){if(confirm('সব ট্রেড ডেটা মুছে �
 
 function calcComp(){
     const p=parseInt(document.getElementById('coP').value),r=parseInt(document.getElementById('coR').value),cR=parseFloat(document.getElementById('coCR').value),d=parseInt(document.getElementById('coD').value),dd=parseFloat(document.getElementById('coDD').value),wr=parseFloat(document.getElementById('coW').value)/100,rr=parseFloat(document.getElementById('coRR').value),td=parseInt(document.getElementById('coTD').value);
-    let thr=p<=50?10:p<=200?16:p<=500?23:31;const need=Math.max(0,thr-cR),daily=need/d,trades=d*td,eR=wr*rr-(1-wr);
-    let nR=eR>0?Math.min((need/100)/(eR*trades)*100,15):99;const ml=nR>0?Math.floor(dd/nR):0,ror=ml>0?Math.pow(1-wr,ml)*100:100;
-    document.getElementById('coNR').textContent=thr.toFixed(1)+'%';document.getElementById('coDD2').textContent=daily.toFixed(2)+'%';document.getElementById('coNR2').textContent=nR>15?'15%+':nR.toFixed(1)+'%';document.getElementById('coRoR').textContent=ror.toFixed(1)+'%';
-    document.getElementById('coRankNum').textContent=r;document.getElementById('coRankMsg').textContent=r<=10?'টপ ১০-এ আছেন!':r<=25?'টপ ১০ থেকে কাছে!':'টপ ১০ থেকে দূরে।';
+    let thr=p<=50?10:p<=200?16:p<=500?23:31;
+    const need=Math.max(0,thr-cR),daily=need/d,trades=d*td,eR=wr*rr-(1-wr);
+    let nR=eR>0?Math.min((need/100)/(eR*trades)*100,15):99;
+    const ml=nR>0?Math.floor(dd/nR):0,ror=ml>0?Math.pow(1-wr,ml)*100:100;
+    document.getElementById('coNR').textContent=thr.toFixed(1)+'%';
+    document.getElementById('coDD2').textContent=daily.toFixed(2)+'%';
+    document.getElementById('coNR2').textContent=nR>15?'15%+':nR.toFixed(1)+'%';
+    document.getElementById('coRoR').textContent=ror.toFixed(1)+'%';
+    document.getElementById('coRankNum').textContent=r;
+    document.getElementById('coRankMsg').textContent=r<=10?'টপ ১০-এ আছেন!':r<=25?'টপ ১০ থেকে কাছে!':'টপ ১০ থেকে দূরে।';
     document.getElementById('coRankAdvice').textContent=`দৈনিক ${daily.toFixed(2)}% টার্গেট। প্রতি ট্রেডে ${nR.toFixed(1)}% রিস্ক।`;
     document.getElementById('coRankPct').textContent=cR+'%';
     document.getElementById('compStrat').innerHTML=`সর্বোচ্চ ${ml} বার 1R লস সহ্য করতে পারবেন। রিস্ক অফ রুইন: <span class="ha">${ror.toFixed(1)}%</span>।`;
 }
 
-function init(){ldSet();tP2();updR();selFirm();}
-init();
+// Initialize
+ldSet();
+tP2();
+updR();
+selFirm();
+calcProj();
 </script>
 </body>
 </html>
