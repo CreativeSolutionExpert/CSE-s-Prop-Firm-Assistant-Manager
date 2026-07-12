@@ -87,6 +87,11 @@ body.light-theme .dd-b{background:rgba(0,0,0,.05)}
 .news-item{font-size:11px;padding:6px;border-bottom:1px solid var(--bd);display:flex;justify-content:space-between;gap:10px}
 .news-item.high{color:var(--rd)}.news-item.medium{color:var(--am)}
 .ctx-hide{display:none!important}
+.info-icon{color:var(--ac);cursor:pointer;font-size:12px;margin-left:5px}
+.tooltip{position:relative;display:inline-block}
+.tooltip .tooltiptext{visibility:hidden;width:200px;background-color:var(--bg3);color:var(--t1);text-align:center;border-radius:6px;padding:8px;position:absolute;z-index:100;bottom:125%;left:50%;margin-left:-100px;opacity:0;transition:opacity 0.3s;border:1px solid var(--bd2);font-size:10px;font-weight:400;white-space:normal}
+.tooltip:hover .tooltiptext{visibility:visible;opacity:1}
+.weak-warn{background:var(--rdd);border:1px solid var(--rd);color:var(--rd);padding:8px 12px;border-radius:8px;margin-bottom:10px;font-size:11px;font-weight:600;display:none}
 </style>
 </head>
 <body>
@@ -99,13 +104,15 @@ body.light-theme .dd-b{background:rgba(0,0,0,.05)}
 <div class="ig"><label>Initial Balance ($)</label><input type="number" id="sIB" value="100000"></div>
 <div class="sd"><span>Telegram Bot (Optional)</span></div>
 <div class="ir"><div class="ig"><label>Bot Token</label><input type="text" id="tgToken" placeholder="123456:ABC-DEF..."></div><div class="ig"><label>Chat ID</label><input type="text" id="tgChat" placeholder="987654321"></div></div>
+<div class="sd"><span>Myfxbook API (Auto Forex Sentiment)</span></div>
+<div class="ir"><div class="ig"><label>Myfxbook Email</label><input type="email" id="mfEmail" placeholder="your@email.com"></div><div class="ig"><label>Myfxbook Password</label><input type="password" id="mfPass" placeholder="Password"></div></div>
 <div class="bg2"><button class="btn btn-run btn-f" onclick="svS()" style="font-size:13px;padding:11px"><i class="fas fa-check"></i> সেভ ও কানেক্ট</button><button class="btn btn-ol btn-f" onclick="clS()"><i class="fas fa-times"></i> বন্ধ</button></div>
 </div></div>
 
 <div class="app">
 <header class="hdr">
 <div class="ico"><i class="fas fa-shield-halved"></i></div>
-<div><h1>Prop Firm Assistant Pro</h1><span>Institutional Terminal | Auto News | Order Flow</span></div>
+<div><h1>Prop Firm Assistant Pro</h1><span>Institutional Terminal | Dynamic Data | Order Flow</span></div>
 <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
 <span class="sb" id="syncI" style="padding:5px 12px;border-radius:16px;font-size:11px;font-weight:600;display:inline-flex;align-items:center;gap:5px"><span class="dt" style="width:5px;height:5px;border-radius:50%;background:currentColor"></span><span id="syncT">কানেক্ট নেই</span></span>
 <button class="btn btn-ol" style="padding:7px 12px;font-size:11px" onclick="backupData()"><i class="fas fa-cloud-arrow-up"></i> Backup</button>
@@ -114,6 +121,9 @@ body.light-theme .dd-b{background:rgba(0,0,0,.05)}
 <button class="btn btn-ol" style="padding:7px 12px;font-size:14px" onclick="toggleTheme()" id="themeBtn"><i class="fas fa-moon"></i></button>
 </div>
 </header>
+
+<!-- অটো দুর্বল সেশন ডিটেক্টর -->
+<div class="weak-warn" id="weakSessionWarn"><i class="fas fa-triangle-exclamation"></i> <span id="weakSessionTxt"></span></div>
 
 <!-- লাইভ ড্যাশবোর্ড -->
 <div class="crd" style="margin-bottom:14px">
@@ -128,8 +138,8 @@ body.light-theme .dd-b{background:rgba(0,0,0,.05)}
 </div>
 <div class="rg" style="grid-template-columns:repeat(3,1fr)">
 <div class="rc" id="ctxNews" style="text-align:left;max-height:120px;overflow-y:auto"><div class="rl" style="text-align:center;margin-bottom:5px">Today's High/Medium Impact News</div><div id="liveNewsList"><div class="news-item" style="color:var(--t3)">Loading...</div></div></div>
-<div class="rc" id="ctxData"><div class="rl">BTC Funding Rate (Binance)</div><div class="rv" id="fundingRate">--</div><div class="rl" style="margin-top:5px">Smart Money Mood</div><div style="font-size:14px;font-weight:700" id="smMood">--</div></div>
-<div class="rc" id="ctxSentiment"><div class="rl">Retail Sentiment (Long %)</div><div class="ir3" style="gap:4px;margin-top:5px"><select id="brokerSel" style="background:var(--bg2);border:1px solid var(--bd);color:var(--t2);padding:5px;border-radius:5px;font-size:10px"><option>OANDA</option><option>IC Markets</option><option>FXCM</option><option>Binance (Auto)</option></select><input type="number" id="longPct" value="70" oninput="calcSentiment()" style="background:var(--bg2);border:1px solid var(--bd);color:var(--t1);padding:5px;border-radius:5px;font-size:11px"></div><div class="rl" style="margin-top:8px">Smart Money Direction</div><div class="rv" id="smartMoney" style="font-size:16px">--</div></div>
+<div class="rc" id="ctxData"><div class="rl">Asset Funding Rate / Volume</div><div class="rv" id="fundingRate">--</div><div class="rl" style="margin-top:5px">Smart Money Mood <span class="tooltip"><i class="fas fa-info-circle info-icon"></i><span class="tooltiptext">Risk-On: স্টক/ক্রিপ্টো আপ, USD ডাউন। Risk-Off: স্টক/ক্রিপ্টো ডাউন, USD আপ।</span></span></div><div style="font-size:14px;font-weight:700" id="smMood">--</div></div>
+<div class="rc" id="ctxSentiment"><div class="rl">Retail Sentiment (Long %)</div><div class="ir3" style="gap:4px;margin-top:5px"><select id="brokerSel" style="background:var(--bg2);border:1px solid var(--bd);color:var(--t2);padding:5px;border-radius:5px;font-size:10px"><option>OANDA</option><option>IC Markets</option><option>FXCM</option><option>Binance (Auto)</option><option>Myfxbook (Auto)</option></select><input type="number" id="longPct" value="70" oninput="calcSentiment()" style="background:var(--bg2);border:1px solid var(--bd);color:var(--t1);padding:5px;border-radius:5px;font-size:11px"></div><div class="rl" style="margin-top:8px">Smart Money Direction</div><div class="rv" id="smartMoney" style="font-size:16px">--</div></div>
 </div>
 </div>
 
@@ -188,7 +198,7 @@ body.light-theme .dd-b{background:rgba(0,0,0,.05)}
 <div class="ig"><label>রিস্ক: <span id="riskD" class="mono tc">1.0%</span></label><input type="range" id="riskS" min="0.1" max="5" step="0.1" value="1" oninput="uRD();calcLot()"></div>
 <div class="ig" id="cSL"><label>SL (Pips)</label><input type="number" id="slP" value="30" oninput="calcLot()"></div>
 </div>
-<div class="ir" id="cPV"><div class="ig"><label>পিপ ভ্যালু ($)</label><select id="prS" onchange="calcLot()"><option value="10">ফরেক্স ($10)</option><option value="1">GOLD ($1)</option><option value="custom">কাস্টম (Exness)</option></select></div><div class="ig" id="cpG" style="display:none"><label>কাস্টম পিপ ভ্যালু</label><input type="number" id="cpV" value="10" step="0.01" oninput="calcLot()"></div></div>
+<div class="ir" id="cPV"><div class="ig"><label>পিপ ভ্যালু ($) <span class="tooltip"><i class="fas fa-info-circle info-icon"></i><span class="tooltiptext">Exness এ ১ লট গোল্ডে $1.00 মুভ = 100 পিপস। তাই গোল্ডের ক্ষেত্রে কাস্টম পিপ ভ্যালু 100 বসাতে হয়।</span></span></label><select id="prS" onchange="calcLot()"><option value="10">ফরেক্স ($10)</option><option value="1">GOLD ($1)</option><option value="custom">কাস্টম (Exness)</option></select></div><div class="ig" id="cpG" style="display:none"><label>কাস্টম পিপ ভ্যালু</label><input type="number" id="cpV" value="10" step="0.01" oninput="calcLot()"></div></div>
 <div class="ir" id="cIdx" style="display:none"><div class="ig"><label>SL (Points/Ticks)</label><input type="number" id="slPts" value="10" oninput="calcLot()"></div><div class="ig"><label>Point Value ($)</label><input type="number" id="ptVal" value="20" oninput="calcLot()"></div></div>
 <div class="ir" id="cCryStk" style="display:none"><div class="ig"><label>Entry Price</label><input type="number" id="entryPrice" value="50000" oninput="calcLot()"></div><div class="ig"><label>SL Price</label><input type="number" id="slPrice" value="49000" oninput="calcLot()"></div></div>
 <div style="text-align:center;padding:16px;background:linear-gradient(135deg,rgba(0,229,255,.08),rgba(0,255,133,.05));border:1px solid rgba(0,229,255,.2);border-radius:var(--r)"><div style="font-size:10px;color:var(--t3)" id="lotLbl">রিকমেন্ডেড লট</div><div class="mono" style="font-size:34px;font-weight:700;color:var(--ac)" id="lotV">0.33</div></div></div>
@@ -202,7 +212,7 @@ body.light-theme .dd-b{background:rgba(0,0,0,.05)}
 <div style="display:flex;gap:8px;margin-top:8px"><input type="text" id="newChk" placeholder="নতুন চেকলিস্ট আইটেম..." style="flex:1;background:var(--bg2);border:1px solid var(--bd);border-radius:8px;padding:8px;color:var(--t1);font-size:12px;outline:none"><button class="btn btn-ol" onclick="addCheckItem()"><i class="fas fa-plus"></i></button></div></div>
 
 <div class="crd"><div class="ct"><i class="fas fa-plus-circle"></i> ট্রেড জার্নাল লগ</div>
-<div class="ir3"><div class="ig"><label>পেয়ার</label><input type="text" id="tP" value="EURUSD"></div><div class="ig"><label>টাইপ</label><select id="tDir"><option>Buy</option><option>Sell</option></select></div><div class="ig"><label>লট</label><input type="number" id="tL" step="0.01" placeholder="অটো"></div></div>
+<div class="ir3"><div class="ig"><label>পেয়ার</label><input type="text" id="tP" value="EURUSD" oninput="fetchMarketData()"></div><div class="ig"><label>টাইপ</label><select id="tDir"><option>Buy</option><option>Sell</option></select></div><div class="ig"><label>লট</label><input type="number" id="tL" step="0.01" placeholder="অটো"></div></div>
 <div class="sd"><span>SL / TP ইনপুট মোড</span></div>
 <div style="display:flex;gap:8px;margin-bottom:10px"><button class="mode-btn on" id="btnModePips" onclick="setInputMode('pips')">পিপস দিয়ে</button><button class="mode-btn" id="btnModePrice" onclick="setInputMode('price')">প্রাইস দিয়ে</button></div>
 <div id="modePips"><div class="ir3"><div class="ig"><label>SL (Pips)</label><input type="number" id="tSL" value="0" oninput="calcRR()"></div><div class="ig"><label>TP (Pips)</label><input type="number" id="tTP" value="0" oninput="calcRR()"></div><div class="ig"><label>RR (Auto)</label><input type="text" id="tRR" value="0" readonly style="color:var(--gr)"></div></div></div>
@@ -263,7 +273,7 @@ body.light-theme .dd-b{background:rgba(0,0,0,.05)}
 </div></div></div></div>
 
 <script>
-let S={bal:100000,ib:100000,hi:100000,rp:1,dl:0,trades:[],sURL:'',firm:'ftmo',tgToken:'',tgChat:'',unlocked:false};
+let S={bal:100000,ib:100000,hi:100000,rp:1,dl:0,trades:[],sURL:'',firm:'ftmo',tgToken:'',tgChat:'',mfEmail:'',mfPass:'',unlocked:false};
 const Firms={ftmo:{dd:5,md:10,mdt:'trailing'},fundingpips:{dd:5,md:10,mdt:'balance'},topstep:{dd:4,md:8,mdt:'balance'},custom:{dd:5,md:10,mdt:'trailing'}};
 let customSetups=JSON.parse(localStorage.getItem('customSetups'))||['Breakout','Trend Pullback','Reversal','Range'];
 let customPsy=JSON.parse(localStorage.getItem('customPsy'))||['A+ Setup','FOMO','Revenge','Early Entry'];
@@ -279,13 +289,39 @@ function fN(n){return Math.abs(n).toLocaleString('en-US',{minimumFractionDigits:
 function toggleTheme(){document.body.classList.toggle('light-theme');const isLight=document.body.classList.contains('light-theme');document.getElementById('themeBtn').innerHTML=isLight?'<i class="fas fa-sun"></i>':'<i class="fas fa-moon"></i>';localStorage.setItem('theme',isLight?'light':'dark')}
 function loadTheme(){if(localStorage.getItem('theme')==='light'){document.body.classList.add('light-theme');document.getElementById('themeBtn').innerHTML='<i class="fas fa-sun"></i>'}}
 
-function opS(){document.getElementById('SM').classList.add('on');document.getElementById('sURL').value=S.sURL;document.getElementById('sIB').value=S.ib;document.getElementById('tgToken').value=S.tgToken||'';document.getElementById('tgChat').value=S.tgChat||''}
+function opS(){document.getElementById('SM').classList.add('on');document.getElementById('sURL').value=S.sURL;document.getElementById('sIB').value=S.ib;document.getElementById('tgToken').value=S.tgToken||'';document.getElementById('tgChat').value=S.tgChat||'';document.getElementById('mfEmail').value=S.mfEmail||'';document.getElementById('mfPass').value=S.mfPass||''}
 function clS(){document.getElementById('SM').classList.remove('on')}
-function svS(){S.sURL=document.getElementById('sURL').value.trim();S.ib=parseFloat(document.getElementById('sIB').value)||100000;S.tgToken=document.getElementById('tgToken').value.trim();S.tgChat=document.getElementById('tgChat').value.trim();S.bal=S.ib;S.hi=S.ib;S.dl=0;S.trades=[];document.getElementById('balV').value=S.bal;uBD();calcLot();rTL();localStorage.setItem('pmS',JSON.stringify({u:S.sURL,b:S.ib,tg:S.tgToken,tc:S.tgChat}));clS();if(S.sURL){uSI('loading');ldTrades();fetchMarketData();}else{uSI('disconnected');}}
+function svS(){S.sURL=document.getElementById('sURL').value.trim();S.ib=parseFloat(document.getElementById('sIB').value)||100000;S.tgToken=document.getElementById('tgToken').value.trim();S.tgChat=document.getElementById('tgChat').value.trim();S.mfEmail=document.getElementById('mfEmail').value.trim();S.mfPass=document.getElementById('mfPass').value.trim();S.bal=S.ib;S.hi=S.ib;S.dl=0;S.trades=[];document.getElementById('balV').value=S.bal;uBD();calcLot();rTL();localStorage.setItem('pmS',JSON.stringify({u:S.sURL,b:S.ib,tg:S.tgToken,tc:S.tgChat,me:S.mfEmail,mp:S.mfPass}));clS();if(S.sURL){uSI('loading');ldTrades();fetchMarketData();}else{uSI('disconnected');}}
 function uSI(s){const e=document.getElementById('syncI'),t=document.getElementById('syncT');e.className='sb '+(s==='connected'?'safe':s==='loading'?'warn':'danger');t.textContent=s==='connected'?'কানেক্টেড':s==='loading'?'সিঙ্ক...':'কানেক্ট নেই';}
 
-function ldSet(){try{const s=JSON.parse(localStorage.getItem('pmS'));if(s){if(s.u)S.sURL=s.u;if(s.b){S.ib=s.b;S.bal=s.b;S.hi=s.b;}if(s.tg)S.tgToken=s.tg;if(s.tc)S.tgChat=s.tc;}document.getElementById('balV').value=S.bal;uBD();loadDropdowns();renderChecklist();calcLot();rTL();if(S.sURL){uSI('connected');ldTrades();fetchMarketData();}}catch(e){loadDropdowns();renderChecklist();calcLot();rTL();}}
-async function ldTrades(){if(!S.sURL)return;try{const r=await fetch(S.sURL+'?action=getAll',{redirect:'follow'});const d=await r.json();if(d.status==='success'){S.trades=d.trades.map(t=>({id:t.id,pair:t.pair,dir:t.dir,lot:+t.lot,rr:t.rr,session:t.session,setup:t.setup,psychology:t.psychology,note:t.note,rating:t.rating,image:t.image,asset:t.asset,sentiment:t.sentiment,volume:t.volume,result:+t.result,type:t.type,date:t.date}));if(S.trades.length>0){const l=S.trades[0];S.bal=l.balanceAfter?parseFloat(l.balanceAfter):S.ib;S.hi=Math.max(S.ib,S.bal);}document.getElementById('balV').value=S.bal;uBD();uSI('connected');rTL();calcLot();}else{uSI('disconnected');}}catch(e){uSI('disconnected');}}
+function ldSet(){try{const s=JSON.parse(localStorage.getItem('pmS'));if(s){if(s.u)S.sURL=s.u;if(s.b){S.ib=s.b;S.bal=s.b;S.hi=s.b;}if(s.tg)S.tgToken=s.tg;if(s.tc)S.tgChat=s.tc;if(s.me)S.mfEmail=s.me;if(s.mp)S.mfPass=s.mp;}document.getElementById('balV').value=S.bal;uBD();loadDropdowns();renderChecklist();calcLot();rTL();if(S.sURL){uSI('connected');ldTrades();fetchMarketData();}}catch(e){loadDropdowns();renderChecklist();calcLot();rTL();}}
+async function ldTrades(){if(!S.sURL)return;try{const r=await fetch(S.sURL+'?action=getAll',{redirect:'follow'});const d=await r.json();if(d.status==='success'){S.trades=d.trades.map(t=>({id:t.id,pair:t.pair,dir:t.dir,lot:+t.lot,rr:t.rr,session:t.session,setup:t.setup,psychology:t.psychology,note:t.note,rating:t.rating,image:t.image,asset:t.asset,sentiment:t.sentiment,volume:t.volume,result:+t.result,type:t.type,date:t.date}));if(S.trades.length>0){const l=S.trades[0];S.bal=l.balanceAfter?parseFloat(l.balanceAfter):S.ib;S.hi=Math.max(S.ib,S.bal);}document.getElementById('balV').value=S.bal;uBD();uSI('connected');rTL();calcLot();detectWeakSession();}else{uSI('disconnected');}}catch(e){uSI('disconnected');}}
+
+// অটো দুর্বল সেশন ডিটেক্টর
+function detectWeakSession(){
+    if(S.trades.length < 5) return;
+    const sessions = {};
+    S.trades.forEach(t => {
+        if(!t.session || t.session === 'Crypto 24/5') return;
+        if(!sessions[t.session]) sessions[t.session] = {trades: 0, wins: 0};
+        sessions[t.session].trades++;
+        if(t.type === 'win') sessions[t.session].wins++;
+    });
+    let weak = null;
+    for(const s in sessions) {
+        if(sessions[s].trades >= 3) {
+            const wr = (sessions[s].wins / sessions[s].trades) * 100;
+            if(wr < 30) weak = {name: s, wr: wr.toFixed(0), count: sessions[s].trades};
+        }
+    }
+    const warnBox = document.getElementById('weakSessionWarn');
+    if(weak) {
+        document.getElementById('weakSessionTxt').textContent = `আপনার ${weak.name} সেশনে উইন রেট মাত্র ${weak.wr}% (${weak.count} ট্রেড)। এই সেশনে ট্রেড নেওয়া এড়িয়ে চলুন!`;
+        warnBox.style.display = 'block';
+    } else {
+        warnBox.style.display = 'none';
+    }
+}
 
 function changeContext() {
     const ctx = document.getElementById('ctxSel').value;
@@ -305,8 +341,15 @@ function changeContext() {
 
 async function fetchMarketData(){
     if(!S.sURL) return;
+    const pairInput = document.getElementById('tP').value.trim().toUpperCase().replace('/', '').replace('-', '');
+    let symbol = pairInput;
+    if(document.getElementById('ctxSel').value === 'crypto') {
+        symbol = pairInput.includes('USDT') ? pairInput : pairInput.replace('USD', 'USDT');
+    } else if (document.getElementById('ctxSel').value === 'forex') {
+        symbol = pairInput.substring(0,6);
+    }
     try {
-        const r = await fetch(S.sURL + '?action=getMarketData', {redirect:'follow'});
+        const r = await fetch(`${S.sURL}?action=getMarketData&symbol=${symbol}&mfEmail=${S.mfEmail}&mfPass=${S.mfPass}`, {redirect:'follow'});
         const d = await r.json();
         const ctx = document.getElementById('ctxSel').value;
         
@@ -320,6 +363,13 @@ async function fetchMarketData(){
                 const corrStatus = document.getElementById('correlationStatus');
                 if(d.correlation > 80) { corrStatus.textContent = 'High Risk (Same Direction)'; corrStatus.style.color = 'var(--rd)'; }
                 else { corrStatus.textContent = 'Safe to Trade'; corrStatus.style.color = 'var(--gr)'; }
+            }
+            if(d.mfLong > 0){
+                const bSel = document.getElementById('brokerSel');
+                if(bSel.value === 'Myfxbook (Auto)'){
+                    document.getElementById('longPct').value = d.mfLong.toFixed(0);
+                    calcSentiment();
+                }
             }
         }
         
@@ -338,13 +388,12 @@ async function fetchMarketData(){
                 else if(d.deltaVol < 45) { ofp.textContent = 'Strong Selling'; ofp.style.color = 'var(--rd)'; }
                 else { ofp.textContent = 'Balanced'; ofp.style.color = 'var(--t2)'; }
             }
-        }
-        
-        if(d.lsr > 0){
-            const bSel = document.getElementById('brokerSel');
-            if(bSel.value === 'Binance (Auto)'){
-                document.getElementById('longPct').value = d.lsr.toFixed(0);
-                calcSentiment();
+            if(d.lsr > 0){
+                const bSel = document.getElementById('brokerSel');
+                if(bSel.value === 'Binance (Auto)'){
+                    document.getElementById('longPct').value = d.lsr.toFixed(0);
+                    calcSentiment();
+                }
             }
         }
     } catch(e){}
@@ -458,6 +507,7 @@ async function addT(type){
     }
     document.getElementById('tR').value='';document.getElementById('tL').value='';document.getElementById('tNote').value='';document.getElementById('tImg').value='';document.getElementById('tEntry').value='';document.getElementById('tSLPrice').value='';document.getElementById('tTPPrice').value='';
     checklist.forEach((_,i)=>{document.getElementById('chk'+i).checked=false;});
+    detectWeakSession();
     toast(type==='win'?'ok':'err',type==='win'?'প্রফিট লগড':'লস লগড');
 }
 
