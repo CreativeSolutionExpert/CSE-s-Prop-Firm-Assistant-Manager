@@ -92,6 +92,9 @@ body.light-theme .dd-b{background:rgba(0,0,0,.05)}
 .tooltip .tooltiptext{visibility:hidden;width:200px;background-color:var(--bg3);color:var(--t1);text-align:center;border-radius:6px;padding:8px;position:absolute;z-index:100;bottom:125%;left:50%;margin-left:-100px;opacity:0;transition:opacity 0.3s;border:1px solid var(--bd2);font-size:10px;font-weight:400;white-space:normal}
 .tooltip:hover .tooltiptext{visibility:visible;opacity:1}
 .weak-warn{background:var(--rdd);border:1px solid var(--rd);color:var(--rd);padding:8px 12px;border-radius:8px;margin-bottom:10px;font-size:11px;font-weight:600;display:none}
+.coach-box{background:linear-gradient(135deg,rgba(196,164,255,.05),rgba(0,229,255,.05));border:1px solid var(--pu);padding:14px;border-radius:var(--r);margin-bottom:12px}
+.coach-box h4{color:var(--pu);font-size:13px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:7px}
+.coach-box p{font-size:12px;color:var(--t1);line-height:1.5}
 </style>
 </head>
 <body>
@@ -112,7 +115,7 @@ body.light-theme .dd-b{background:rgba(0,0,0,.05)}
 <div class="app">
 <header class="hdr">
 <div class="ico"><i class="fas fa-shield-halved"></i></div>
-<div><h1>Prop Firm Assistant Pro</h1><span>Institutional Terminal | Dynamic Data | Order Flow</span></div>
+<div><h1>Prop Firm Assistant Pro</h1><span>Institutional Terminal | Auto-Coach | Order Flow</span></div>
 <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
 <span class="sb" id="syncI" style="padding:5px 12px;border-radius:16px;font-size:11px;font-weight:600;display:inline-flex;align-items:center;gap:5px"><span class="dt" style="width:5px;height:5px;border-radius:50%;background:currentColor"></span><span id="syncT">কানেক্ট নেই</span></span>
 <button class="btn btn-ol" style="padding:7px 12px;font-size:11px" onclick="backupData()"><i class="fas fa-cloud-arrow-up"></i> Backup</button>
@@ -122,10 +125,8 @@ body.light-theme .dd-b{background:rgba(0,0,0,.05)}
 </div>
 </header>
 
-<!-- অটো দুর্বল সেশন ডিটেক্টর -->
 <div class="weak-warn" id="weakSessionWarn"><i class="fas fa-triangle-exclamation"></i> <span id="weakSessionTxt"></span></div>
 
-<!-- লাইভ ড্যাশবোর্ড -->
 <div class="crd" style="margin-bottom:14px">
 <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px;margin-bottom:10px">
 <div style="display:flex;align-items:center;gap:10px"><i class="fas fa-clock tc" style="font-size:18px"></i><div class="mono" id="liveClock" style="font-size:20px;font-weight:700">--:--:--</div><select id="tzSel" onchange="updateClock()" style="background:var(--bg2);border:1px solid var(--bd);color:var(--t2);padding:5px 8px;border-radius:5px;font-size:11px;outline:none"><option value="UTC">UTC</option><option value="Local">Local</option><option value="America/New_York">New York (DST)</option><option value="Europe/London">London (DST)</option><option value="Asia/Dubai">Dubai</option><option value="Asia/Dhaka">Dhaka</option></select></div>
@@ -143,7 +144,6 @@ body.light-theme .dd-b{background:rgba(0,0,0,.05)}
 </div>
 </div>
 
-<!-- কোরিলেশন ও অর্ডার ফ্লো ড্যাশবোর্ড -->
 <div class="crd" style="border-color:var(--pu);margin-bottom:14px">
 <div class="ct" style="color:var(--pu)"><i class="fas fa-chart-pie"></i> Correlation Matrix & Order Flow (Auto)</div>
 <div class="rg" style="grid-template-columns:repeat(3,1fr)">
@@ -162,7 +162,6 @@ body.light-theme .dd-b{background:rgba(0,0,0,.05)}
 <button class="tab" onclick="sMT('comp',this)"><i class="fas fa-trophy"></i> কম্পিটিশন মোড</button>
 </div>
 
-<!-- ট্যাব ১: চ্যালেঞ্জ ক্যালকুলেটর -->
 <div class="tpc on" id="tp-calc"><div class="calc-g"><div>
 <div class="crd"><div class="ct"><i class="fas fa-brain"></i> স্ট্র্যাটেজি স্ট্যাটস</div>
 <div class="ir"><div class="ig"><label>উইন রেট (%)</label><input type="number" id="cWR" value="40"></div><div class="ig"><label>রিস্ক:রিওয়ার্ড</label><input type="number" id="cRR" value="2" step="0.1"></div></div>
@@ -182,7 +181,6 @@ body.light-theme .dd-b{background:rgba(0,0,0,.05)}
 <div class="ax" style="margin-top:12px"><h4><i class="fas fa-info-circle"></i> সিমুলেশন ইনসাইট</h4><p id="insightT">অপটিম্যাল রিস্ক জানতে সিমুলেশন চালান।</p></div>
 </div></div></div>
 
-<!-- ট্যাব ২: ট্রেডিং ম্যানেজার -->
 <div class="tpc" id="tp-trade"><div class="calc-g"><div>
 <div class="crd"><div class="ig"><label>প্রপ ফার্ম সিলেক্ট করুন</label><select id="firmSel" onchange="selFirm()"><option value="ftmo">FTMO</option><option value="fundingpips">Funding Pips</option><option value="topstep">Topstep</option><option value="custom">Custom</option></select></div>
 <div id="customFirmRules" style="display:none;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px"><div class="ig"><label>ডেইলি DD (%)</label><input type="number" id="fDD" value="5" oninput="calcLot()"></div><div class="ig"><label>ম্যাক্স DD (%)</label><input type="number" id="fMD" value="10" oninput="calcLot()"></div><div class="ig"><label>DD টাইপ</label><select id="fDDT" onchange="calcLot()"><option value="trailing">Trailing</option><option value="balance">Static</option></select></div></div>
@@ -225,6 +223,12 @@ body.light-theme .dd-b{background:rgba(0,0,0,.05)}
 </div></div>
 
 <div>
+<!-- অটো-কোচ -->
+<div class="coach-box" id="autoCoachBox">
+<h4><i class="fas fa-robot"></i> অটো-কোচ (AI Trading Coach)</h4>
+<p id="autoCoachTxt">ট্রেড লগ করুন, কোচ আপনার স্ট্যাটস বিশ্লেষণ করবে...</p>
+</div>
+
 <div class="crd" style="border-color:var(--pu)"><div class="ct" style="color:var(--pu)"><i class="fas fa-chart-line"></i> রিকভারি ও টার্গেট প্ল্যান</div>
 <div class="ax p" style="margin-top:0"><h4>ড্রডাউন রিকভারি</h4><p>বর্তমান ড্রডাউন: <span class="ha" id="recDD">0%</span><br>ফিরে আসতে প্রয়োজন: <span class="ha" id="recPct">0%</span> রিটার্ন<br>আপনার বর্তমান স্ট্র্যাটেজিতে প্রায় <span class="ha" id="recTrades">0</span> ট্রেড লাগবে।</p></div>
 <div class="ax w"><h4>মাসিক টার্গেট প্রোজেকশন</h4><div class="ir3" style="margin-bottom:8px"><input type="number" id="mTarget" value="10" placeholder="টার্গেট (%)" oninput="calcProj()" style="background:var(--bg2);border:1px solid var(--bd);border-radius:8px;padding:8px;color:var(--t1)"><input type="number" id="mWR" value="40" placeholder="উইন রেট (%)" oninput="calcProj()" style="background:var(--bg2);border:1px solid var(--bd);border-radius:8px;padding:8px;color:var(--t1)"><input type="number" id="mRR" value="2" placeholder="রিস্ক:রিওয়ার্ড" oninput="calcProj()" style="background:var(--bg2);border:1px solid var(--bd);border-radius:8px;padding:8px;color:var(--t1)"></div><p id="projRes">মাসে প্রায় <span class="ha">--</span> ট্রেড নিতে হবে।</p></div></div>
@@ -247,7 +251,6 @@ body.light-theme .dd-b{background:rgba(0,0,0,.05)}
 <div style="border-top:1px solid var(--bd);padding-top:12px;margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px"><button class="btn btn-ol btn-f" onclick="rstDly()"><i class="fas fa-sun"></i> নতুন দিন</button><button class="btn btn-ol btn-f" onclick="rstAll()"><i class="fas fa-arrows-rotate"></i> সব রিসেট</button></div></div>
 </div></div></div>
 
-<!-- ট্যাব ৩: কম্পিটিশন মোড -->
 <div class="tpc" id="tp-comp"><div class="calc-g"><div>
 <div class="crd"><div class="ct"><i class="fas fa-trophy" style="color:var(--am)"></i> কম্পিটিশন সেটিংস</div>
 <div class="ir3"><div class="ig"><label>প্রতিযোগী</label><input type="number" id="coP" value="500"></div><div class="ig"><label>আপনার র‍্যাংক</label><input type="number" id="coR" value="45"></div><div class="ig"><label>রিটার্ন (%)</label><input type="number" id="coCR" value="3.2"></div></div>
@@ -295,9 +298,50 @@ function svS(){S.sURL=document.getElementById('sURL').value.trim();S.ib=parseFlo
 function uSI(s){const e=document.getElementById('syncI'),t=document.getElementById('syncT');e.className='sb '+(s==='connected'?'safe':s==='loading'?'warn':'danger');t.textContent=s==='connected'?'কানেক্টেড':s==='loading'?'সিঙ্ক...':'কানেক্ট নেই';}
 
 function ldSet(){try{const s=JSON.parse(localStorage.getItem('pmS'));if(s){if(s.u)S.sURL=s.u;if(s.b){S.ib=s.b;S.bal=s.b;S.hi=s.b;}if(s.tg)S.tgToken=s.tg;if(s.tc)S.tgChat=s.tc;if(s.me)S.mfEmail=s.me;if(s.mp)S.mfPass=s.mp;}document.getElementById('balV').value=S.bal;uBD();loadDropdowns();renderChecklist();calcLot();rTL();if(S.sURL){uSI('connected');ldTrades();fetchMarketData();}}catch(e){loadDropdowns();renderChecklist();calcLot();rTL();}}
-async function ldTrades(){if(!S.sURL)return;try{const r=await fetch(S.sURL+'?action=getAll',{redirect:'follow'});const d=await r.json();if(d.status==='success'){S.trades=d.trades.map(t=>({id:t.id,pair:t.pair,dir:t.dir,lot:+t.lot,rr:t.rr,session:t.session,setup:t.setup,psychology:t.psychology,note:t.note,rating:t.rating,image:t.image,asset:t.asset,sentiment:t.sentiment,volume:t.volume,result:+t.result,type:t.type,date:t.date}));if(S.trades.length>0){const l=S.trades[0];S.bal=l.balanceAfter?parseFloat(l.balanceAfter):S.ib;S.hi=Math.max(S.ib,S.bal);}document.getElementById('balV').value=S.bal;uBD();uSI('connected');rTL();calcLot();detectWeakSession();}else{uSI('disconnected');}}catch(e){uSI('disconnected');}}
+async function ldTrades(){if(!S.sURL)return;try{const r=await fetch(S.sURL+'?action=getAll',{redirect:'follow'});const d=await r.json();if(d.status==='success'){S.trades=d.trades.map(t=>({id:t.id,pair:t.pair,dir:t.dir,lot:+t.lot,rr:t.rr,session:t.session,setup:t.setup,psychology:t.psychology,note:t.note,rating:t.rating,image:t.image,asset:t.asset,sentiment:t.sentiment,volume:t.volume,result:+t.result,type:t.type,date:t.date}));if(S.trades.length>0){const l=S.trades[0];S.bal=l.balanceAfter?parseFloat(l.balanceAfter):S.ib;S.hi=Math.max(S.ib,S.bal);}document.getElementById('balV').value=S.bal;uBD();uSI('connected');rTL();calcLot();detectWeakSession();updateAutoCoach();}else{uSI('disconnected');}}catch(e){uSI('disconnected');}}
 
-// অটো দুর্বল সেশন ডিটেক্টর
+// অটো-কোচ লজিক
+function updateAutoCoach(){
+    const box=document.getElementById('autoCoachBox');
+    const txt=document.getElementById('autoCoachTxt');
+    const f=S.trades;
+    if(f.length<5){
+        box.style.borderColor='var(--am)';
+        txt.innerHTML=`অটো-কোচ: সঠিক বিশ্লেষণের জন্য আরও <span style="color:var(--am);font-weight:700">${5-f.length}</span>টি ট্রেড লগ করুন।`;
+        return;
+    }
+    const wins=f.filter(t=>t.type==='win');
+    const losses=f.filter(t=>t.type==='loss');
+    const wr=(wins.length/f.length)*100;
+    const totalProfit=wins.reduce((s,t)=>s+t.result,0);
+    const totalLoss=Math.abs(losses.reduce((s,t)=>s+t.result,0));
+    const pf=totalLoss>0?totalProfit/totalLoss:totalProfit;
+    const avgWin=wins.length>0?totalProfit/wins.length:0;
+    const avgLoss=losses.length>0?totalLoss/losses.length:0;
+    const rr=avgLoss>0?avgWin/avgLoss:0;
+    
+    let insights=[];
+    let color='var(--gr)';
+    
+    if(pf<1.2){color='var(--rd)';insights.push("প্রফিট ফ্যাক্টর ১.২-এর নিচে। রিস্ক কমান বা স্ট্র্যাটেজি উন্নত করুন।");}
+    if(wr<35&&rr<2){color='var(--rd)';insights.push("উইন রেট ও আরআর দুটোই কম। শুধু A+ সেটআপে ট্রেড নিন।");}
+    
+    const psychLosses={};
+    losses.forEach(t=>{if(t.psychology&&t.psychology!=='A+ Setup'){psychLosses[t.psychology]=(psychLosses[t.psychology]||0)+1;}});
+    let worstPsych=null;let maxCount=0;
+    for(let p in psychLosses){if(psychLosses[p]>maxCount){maxCount=psychLosses[p];worstPsych=p;}}
+    if(worstPsych&&maxCount>=2){color='var(--rd)';insights.push(`আপনি "${worstPsych}" মানসিকতায় ${maxCount} বার লস করেছেন। এই মানসিক অবস্থায় ট্রেড বন্ধ করুন।`);}
+    
+    let currStreak=0;
+    for(let i=0;i<f.length;i++){if(f[i].type==='loss')currStreak++;else break;}
+    if(currStreak>=3){color='var(--rd)';insights.push(`পরপর ${currStreak}টি লস! রিভেঞ্জ ট্রেড থেকে সাবধান। লট সাইজ অর্ধেক করুন।`);}
+    
+    if(insights.length===0){color='var(--gr)';insights.push("দারুণ! স্ট্যাটস ভালো আছে। একই ডিসিপ্লিন ধরে রাখুন।");}
+    
+    box.style.borderColor=color;
+    txt.innerHTML=`<strong style="color:${color}">অটো-কোচ ইনসাইট:</strong><br>${insights.join('<br>')}`;
+}
+
 function detectWeakSession(){
     if(S.trades.length < 5) return;
     const sessions = {};
@@ -508,11 +552,12 @@ async function addT(type){
     document.getElementById('tR').value='';document.getElementById('tL').value='';document.getElementById('tNote').value='';document.getElementById('tImg').value='';document.getElementById('tEntry').value='';document.getElementById('tSLPrice').value='';document.getElementById('tTPPrice').value='';
     checklist.forEach((_,i)=>{document.getElementById('chk'+i).checked=false;});
     detectWeakSession();
+    updateAutoCoach();
     toast(type==='win'?'ok':'err',type==='win'?'প্রফিট লগড':'লস লগড');
 }
 
 function rTL(){const l=document.getElementById('tLL');let f=S.trades;const filter=document.getElementById('tFilter').value;if(filter!=='all'){const now=new Date();f=S.trades.filter(t=>{const d=new Date(t.date);if(filter==='month')return d.getMonth()===now.getMonth()&&d.getFullYear()===now.getFullYear();if(filter==='week'){const w1=Math.ceil((now.getDate()-now.getDay()+1)/7),w2=Math.ceil((d.getDate()-d.getDay()+1)/7);return d.getMonth()===now.getMonth()&&w1===w2;}return true})}if(!f.length){l.innerHTML='<div class="es"><i class="fas fa-inbox"></i><p>কোনো ট্রেড নেই</p></div>';uTS(f);return}l.innerHTML=f.map(t=>`<div class="te ${t.type}"><div class="te-h" style="display:flex;justify-content:space-between"><span>${t.pair} <span style="font-size:9px;color:var(--t3)">${t.dir||''} | ${t.rating||'-'}</span></span><div style="display:flex;gap:6px"><span style="color:${t.type==='win'?'var(--gr)':'var(--rd)'}">${t.result>0?'+':''}$${fN(t.result)}</span><button class="te-x" onclick="delT('${t.id}')"><i class="fas fa-xmark"></i></button></div></div><div style="font-size:9px;color:var(--t3);margin-bottom:4px"><span>${t.lot} Lot</span> <span>RR: ${t.rr||0}</span> <span>${t.setup||'-'}</span> ${t.image?`<a href="${t.image}" target="_blank" style="color:var(--ac);text-decoration:none;margin-left:5px"><i class="fas fa-image"></i> Shot</a>`:''}</div><div style="font-size:10px;color:var(--t2);padding:5px;background:rgba(0,0,0,.2);border-radius:4px">${t.note||'No note'}</div></div>`).join('');uTS(f);}
-function delT(id){const i=S.trades.findIndex(t=>t.id===id);if(i===-1)return;const t=S.trades[i];S.bal-=t.result;if(t.result<0)S.dl-=Math.abs(t.result);S.trades.splice(i,1);S.hi=Math.max(S.ib,S.bal);document.getElementById('balV').value=S.bal;uBD();rTL();calcLot();document.getElementById('dBal').value=S.bal;}
+function delT(id){const i=S.trades.findIndex(t=>t.id===id);if(i===-1)return;const t=S.trades[i];S.bal-=t.result;if(t.result<0)S.dl-=Math.abs(t.result);S.trades.splice(i,1);S.hi=Math.max(S.ib,S.bal);document.getElementById('balV').value=S.bal;uBD();rTL();calcLot();document.getElementById('dBal').value=S.bal;detectWeakSession();updateAutoCoach();}
 
 function uTS(f){document.getElementById('sTT').textContent=f.length;const w=f.filter(x=>x.type==='win').length;document.getElementById('sWR').textContent=f.length>0?(w/f.length*100).toFixed(0)+'%':'0%';const gp=f.filter(x=>x.result>0).reduce((s,x)=>s+x.result,0);const gl=f.filter(x=>x.result<0).reduce((s,x)=>s+Math.abs(x.result),0);document.getElementById('sTP').textContent='+$'+fN(gp);document.getElementById('sTL').textContent='-$'+fN(gl);calcProMetrics(gp,gl,f.length,w);}
 function calcProMetrics(gp,gl,n,w){if(!gp&&!gl){document.getElementById('mPF').textContent='0.00';document.getElementById('mEX').textContent='$0';return;}gp=gp||S.trades.filter(x=>x.result>0).reduce((s,x)=>s+x.result,0);gl=gl||S.trades.filter(x=>x.result<0).reduce((s,x)=>s+Math.abs(x.result),0);n=n||S.trades.length;const pf=gl>0?(gp/gl):0;const exp=n>0?((gp-gl)/n):0;document.getElementById('mPF').textContent=pf.toFixed(2);document.getElementById('mEX').textContent='$'+fN(exp);}
@@ -520,7 +565,7 @@ function calcProMetrics(gp,gl,n,w){if(!gp&&!gl){document.getElementById('mPF').t
 function calcDouble(){const bal=parseFloat(document.getElementById('dBal').value)||0,wr=parseFloat(document.getElementById('dWR').value)/100,rr=parseFloat(document.getElementById('dRR').value),risk=parseFloat(document.getElementById('dRisk').value)/100,tpw=parseFloat(document.getElementById('dTPW').value);const eR=wr*rr-(1-wr);if(eR<=0||risk<=0){document.getElementById('dblT').textContent='N/A';return;}const n=Math.log(2)/Math.log(1+eR*risk);document.getElementById('dblT').textContent=Math.ceil(n);document.getElementById('dblTime').textContent=(n/tpw).toFixed(1)+'W';}
 
 function rstDly(){S.dl=0;S.unlocked=false;calcLot();toast('ok','ডেইলি DD রিসেট হয়েছে')}
-function rstAll(){if(confirm('সব ট্রেড ডেটা মুছে ফেলা হবে?')){S.bal=S.ib;S.hi=S.ib;S.dl=0;S.trades=[];document.getElementById('balV').value=S.bal;uBD();rTL();calcLot();document.getElementById('dBal').value=S.ib;toast('inf','সব রিসেট হয়েছে')}}
+function rstAll(){if(confirm('সব ট্রেড ডেটা মুছে ফেলা হবে?')){S.bal=S.ib;S.hi=S.ib;S.dl=0;S.trades=[];document.getElementById('balV').value=S.bal;uBD();rTL();calcLot();document.getElementById('dBal').value=S.ib;detectWeakSession();updateAutoCoach();toast('inf','সব রিসেট হয়েছে')}}
 
 function calcComp(){const p=parseInt(document.getElementById('coP').value),r=parseInt(document.getElementById('coR').value),cR=parseFloat(document.getElementById('coCR').value),d=parseInt(document.getElementById('coD').value),dd=parseFloat(document.getElementById('coDD').value),wr=parseFloat(document.getElementById('coW').value)/100,rr=parseFloat(document.getElementById('coRR').value),td=parseInt(document.getElementById('coTD').value);let thr=p<=50?10:p<=200?16:p<=500?23:31;const need=Math.max(0,thr-cR),daily=need/d,trades=d*td,eR=wr*rr-(1-wr);let nR=eR>0?Math.min((need/100)/(eR*trades)*100,15):99;const ml=nR>0?Math.floor(dd/nR):0,ror=ml>0?Math.pow(1-wr,ml)*100:100;document.getElementById('coNR').textContent=thr.toFixed(1)+'%';document.getElementById('coDD2').textContent=daily.toFixed(2)+'%';document.getElementById('coNR2').textContent=nR>15?'15%+':nR.toFixed(1)+'%';document.getElementById('coRoR').textContent=ror.toFixed(1)+'%';document.getElementById('coRankNum').textContent=r;document.getElementById('coRankMsg').textContent=r<=10?'টপ ১০-এ আছেন!':'টপ ১০ থেকে দূরে।';document.getElementById('coRankPct').textContent=cR+'%';document.getElementById('compStrat').innerHTML=`সর্বোচ্চ ${ml} বার 1R লস সহ্য করতে পারবেন। রিস্ক অফ রুইন: <span class="ha">${ror.toFixed(1)}%</span>।`;}
 
