@@ -99,6 +99,7 @@ body.light-theme .dd-b{background:rgba(0,0,0,.05)}
 </head>
 <body>
 <div class="bg-g"></div><div class="toast-c" id="TC"></div>
+<input type="file" id="csvFileInput" accept=".csv" style="display:none">
 
 <div class="modal-ov" id="SM"><div class="modal">
 <button class="mc" onclick="clS()"><i class="fas fa-xmark"></i></button>
@@ -115,7 +116,7 @@ body.light-theme .dd-b{background:rgba(0,0,0,.05)}
 <div class="app">
 <header class="hdr">
 <div class="ico"><i class="fas fa-shield-halved"></i></div>
-<div><h1>Prop Firm Assistant Pro</h1><span>Institutional Terminal | Auto-Coach | Order Flow</span></div>
+<div><h1>Prop Firm Assistant Pro</h1><span>Institutional Terminal | Auto-Coach | CSV Import</span></div>
 <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
 <span class="sb" id="syncI" style="padding:5px 12px;border-radius:16px;font-size:11px;font-weight:600;display:inline-flex;align-items:center;gap:5px"><span class="dt" style="width:5px;height:5px;border-radius:50%;background:currentColor"></span><span id="syncT">কানেক্ট নেই</span></span>
 <button class="btn btn-ol" style="padding:7px 12px;font-size:11px" onclick="backupData()"><i class="fas fa-cloud-arrow-up"></i> Backup</button>
@@ -245,7 +246,12 @@ body.light-theme .dd-b{background:rgba(0,0,0,.05)}
 <div class="crd"><div class="ct"><i class="fas fa-chart-pie"></i> Pro Metrics & ড্রডাউন</div>
 <div class="rg" style="grid-template-columns:repeat(2,1fr)"><div class="rc"><div class="rl">Profit Factor</div><div class="rv tp" id="mPF">0.00</div></div><div class="rc"><div class="rl">Expectancy ($)</div><div class="rv tc" id="mEX">$0</div></div><div class="rc"><div class="rl">ডেইলি DD</div><div class="rv tr" id="ddDT">$0 / $5K</div><div class="dd-b" style="margin-top:5px"><div class="dd-f safe" id="ddDB" style="width:0%"></div></div></div><div class="rc"><div class="rl">ম্যাক্স DD</div><div class="rv tr" id="ddMT">$0 / $10K</div><div class="dd-b" style="margin-top:5px"><div class="dd-f safe" id="ddMB" style="width:0%"></div></div></div></div></div>
 
-<div class="crd"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><div class="ct" style="margin-bottom:0"><i class="fas fa-list-check"></i> ট্রেড হিস্ট্রি</div><select id="tFilter" onchange="rTL()" style="background:var(--bg2);border:1px solid var(--bd);color:var(--t2);padding:5px 8px;border-radius:5px;font-size:11px"><option value="all">সব</option><option value="month">এই মাস</option><option value="week">এই সপ্তাহ</option></select></div>
+<div class="crd"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><div class="ct" style="margin-bottom:0"><i class="fas fa-list-check"></i> ট্রেড হিস্ট্রি</div>
+<div style="display:flex;gap:8px">
+<button class="btn btn-ol" style="padding:5px 10px;font-size:10px" onclick="document.getElementById('csvFileInput').click()"><i class="fas fa-file-import"></i> Import CSV</button>
+<select id="tFilter" onchange="rTL()" style="background:var(--bg2);border:1px solid var(--bd);color:var(--t2);padding:5px 8px;border-radius:5px;font-size:11px"><option value="all">সব</option><option value="month">এই মাস</option><option value="week">এই সপ্তাহ</option></select>
+</div>
+</div>
 <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px"><div style="background:var(--bg2);padding:8px;border-radius:8px;text-align:center"><div style="font-size:9px;color:var(--t3)">মোট</div><div class="mono" style="font-size:14px;font-weight:700" id="sTT">0</div></div><div style="background:var(--bg2);padding:8px;border-radius:8px;text-align:center"><div style="font-size:9px;color:var(--t3)">উইন রেট</div><div class="mono" style="font-size:14px;font-weight:700;color:var(--gr)" id="sWR">0%</div></div><div style="background:var(--bg2);padding:8px;border-radius:8px;text-align:center"><div style="font-size:9px;color:var(--t3)">প্রফিট</div><div class="mono" style="font-size:14px;font-weight:700;color:var(--gr)" id="sTP">$0</div></div><div style="background:var(--bg2);padding:8px;border-radius:8px;text-align:center"><div style="font-size:9px;color:var(--t3)">লস</div><div class="mono" style="font-size:14px;font-weight:700;color:var(--rd)" id="sTL">$0</div></div></div>
 <div class="tl" id="tLL"><div class="es"><i class="fas fa-inbox"></i><p>কোনো ট্রেড নেই</p></div></div>
 <div style="border-top:1px solid var(--bd);padding-top:12px;margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px"><button class="btn btn-ol btn-f" onclick="rstDly()"><i class="fas fa-sun"></i> নতুন দিন</button><button class="btn btn-ol btn-f" onclick="rstAll()"><i class="fas fa-arrows-rotate"></i> সব রিসেট</button></div></div>
@@ -267,7 +273,7 @@ body.light-theme .dd-b{background:rgba(0,0,0,.05)}
 <div>
 <div class="crd"><div class="comp-rank danger"><div class="rank-num" id="coRankNum">--</div><div class="rank-info"><h3 id="coRankMsg">--</h3><p id="coRankAdvice"></p></div><div class="rank-pct ta" id="coRankPct">--</div></div></div>
 <div class="rg"><div class="rc hl" style="border-color:var(--am)"><div class="rl">প্রয়োজনীয় রিটার্ন</div><div class="rv ha" id="coNR">--</div></div><div class="rc"><div class="rl">দৈনিক প্রয়োজন</div><div class="rv ta" id="coDD2">--</div></div><div class="rc"><div class="rl">প্রয়োজনীয় রিস্ক</div><div class="rv tr" id="coNR2">--</div></div><div class="rc"><div class="rl">রিস্ক অফ রুইন</div><div class="rv" id="coRoR">--</div></div></div>
-<div class="ax p"><h4><i class="fas fa-chess-queen"></i> স্ট্র্যাটেজি</h4><p id="compStrat">ক্যালকুলেট করুন</p></div>
+<div class="ax p"><h4><i class="fas fa-chess-queen"></i> স্ট্র্যাটেগি</h4><p id="compStrat">ক্যালকুলেট করুন</p></div>
 
 <div class="crd"><div class="ct"><i class="fas fa-magnifying-glass-chart"></i> বিশ্লেষণ (Action Plan)</div>
 <div class="rg" style="grid-template-columns:repeat(2,1fr);margin-bottom:10px"><div class="rc"><div class="rl">মোট চ্যালেঞ্জ</div><div class="rv tc" id="anTotal">0</div></div><div class="rc"><div class="rl">পাস রেট</div><div class="rv tg" id="anPass">0%</div></div></div>
@@ -327,7 +333,7 @@ function updateAutoCoach(){
     if(wr<35&&rr<2){color='var(--rd)';insights.push("উইন রেট ও আরআর দুটোই কম। শুধু A+ সেটআপে ট্রেড নিন।");}
     
     const psychLosses={};
-    losses.forEach(t=>{if(t.psychology&&t.psychology!=='A+ Setup'){psychLosses[t.psychology]=(psychLosses[t.psychology]||0)+1;}});
+    losses.forEach(t=>{if(t.psychology&&t.psychology!=='A+ Setup'&&t.psychology!=='Unknown'){psychLosses[t.psychology]=(psychLosses[t.psychology]||0)+1;}});
     let worstPsych=null;let maxCount=0;
     for(let p in psychLosses){if(psychLosses[p]>maxCount){maxCount=psychLosses[p];worstPsych=p;}}
     if(worstPsych&&maxCount>=2){color='var(--rd)';insights.push(`আপনি "${worstPsych}" মানসিকতায় ${maxCount} বার লস করেছেন। এই মানসিক অবস্থায় ট্রেড বন্ধ করুন।`);}
@@ -346,7 +352,7 @@ function detectWeakSession(){
     if(S.trades.length < 5) return;
     const sessions = {};
     S.trades.forEach(t => {
-        if(!t.session || t.session === 'Crypto 24/5') return;
+        if(!t.session || t.session === 'Crypto 24/5' || t.session === 'Imported') return;
         if(!sessions[t.session]) sessions[t.session] = {trades: 0, wins: 0};
         sessions[t.session].trades++;
         if(t.type === 'win') sessions[t.session].wins++;
@@ -555,6 +561,85 @@ async function addT(type){
     updateAutoCoach();
     toast(type==='win'?'ok':'err',type==='win'?'প্রফিট লগড':'লস লগড');
 }
+
+// CSV Import লজিক
+document.getElementById('csvFileInput').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = async function(e) {
+        const text = e.target.result;
+        const lines = text.split(/\r?\n/);
+        let headerIndex = -1;
+        let headers = [];
+        
+        for(let i=0; i<lines.length; i++) {
+            if(lines[i].toLowerCase().includes('type') && (lines[i].toLowerCase().includes('profit') || lines[i].toLowerCase().includes('total profit'))) {
+                headerIndex = i;
+                headers = lines[i].split(',').map(h => h.trim().toLowerCase().replace(/['"]/g, ''));
+                break;
+            }
+        }
+        
+        if(headerIndex === -1) { toast('err', 'ভুল ফরম্যাট! কলাম হেডার পাওয়া যায়নি।'); return; }
+        
+        let importedTrades = [];
+        for(let i = headerIndex + 1; i < lines.length; i++) {
+            const cols = lines[i].split(',').map(c => c.trim().replace(/['"]/g, ''));
+            if(cols.length < headers.length) continue;
+            
+            let trade = {};
+            headers.forEach((h, idx) => trade[h] = cols[idx]);
+            
+            if(!trade.profit && !trade['total profit']) continue;
+            const profitVal = parseFloat(trade.profit || trade['total profit']);
+            if(isNaN(profitVal)) continue;
+            
+            const type = profitVal > 0 ? 'win' : profitVal < 0 ? 'loss' : 'be';
+            const pair = trade.symbol || trade['symbol '] || 'UNKNOWN';
+            const dir = (trade.type || '').toLowerCase().includes('buy') ? 'Buy' : 'Sell';
+            const lot = parseFloat(trade.volume) || 0;
+            const dateStr = trade['close time'] || trade['open time'] || new Date().toLocaleDateString('en-CA');
+            const date = new Date(dateStr).toLocaleDateString('en-CA');
+            
+            importedTrades.push({
+                id: Date.now().toString() + Math.random().toString(36).substr(2, 5),
+                date: date || new Date().toLocaleDateString('en-CA'),
+                pair: pair.toUpperCase(),
+                dir: dir,
+                lot: lot,
+                rr: 0,
+                session: 'Imported',
+                setup: 'Manual Import',
+                psychology: 'Unknown',
+                note: 'Imported from CSV',
+                rating: 'N/A',
+                result: profitVal,
+                type: type,
+                asset: 'forex',
+                sentiment: '',
+                volume: ''
+            });
+        }
+        
+        if(importedTrades.length === 0) { toast('err', 'কোনো ভ্যালিড ট্রেড পাওয়া যায়নি।'); return; }
+        
+        S.trades = importedTrades.concat(S.trades);
+        S.bal += importedTrades.reduce((s, t) => s + t.result, 0);
+        S.hi = Math.max(S.hi, S.bal);
+        
+        rTL(); calcLot(); detectWeakSession(); updateAutoCoach();
+        toast('ok', `${importedTrades.length}টি ট্রেড সফলভাবে ইম্পোর্ট হয়েছে!`);
+        
+        if(S.sURL) {
+            try {
+                await fetch(S.sURL, {method:'POST', headers:{'Content-Type':'text/plain'}, body:JSON.stringify({action:'bulkAdd', trades:importedTrades})});
+            } catch(e){}
+        }
+    };
+    reader.readAsText(file);
+    event.target.value = ''; // Reset input
+});
 
 function rTL(){const l=document.getElementById('tLL');let f=S.trades;const filter=document.getElementById('tFilter').value;if(filter!=='all'){const now=new Date();f=S.trades.filter(t=>{const d=new Date(t.date);if(filter==='month')return d.getMonth()===now.getMonth()&&d.getFullYear()===now.getFullYear();if(filter==='week'){const w1=Math.ceil((now.getDate()-now.getDay()+1)/7),w2=Math.ceil((d.getDate()-d.getDay()+1)/7);return d.getMonth()===now.getMonth()&&w1===w2;}return true})}if(!f.length){l.innerHTML='<div class="es"><i class="fas fa-inbox"></i><p>কোনো ট্রেড নেই</p></div>';uTS(f);return}l.innerHTML=f.map(t=>`<div class="te ${t.type}"><div class="te-h" style="display:flex;justify-content:space-between"><span>${t.pair} <span style="font-size:9px;color:var(--t3)">${t.dir||''} | ${t.rating||'-'}</span></span><div style="display:flex;gap:6px"><span style="color:${t.type==='win'?'var(--gr)':'var(--rd)'}">${t.result>0?'+':''}$${fN(t.result)}</span><button class="te-x" onclick="delT('${t.id}')"><i class="fas fa-xmark"></i></button></div></div><div style="font-size:9px;color:var(--t3);margin-bottom:4px"><span>${t.lot} Lot</span> <span>RR: ${t.rr||0}</span> <span>${t.setup||'-'}</span> ${t.image?`<a href="${t.image}" target="_blank" style="color:var(--ac);text-decoration:none;margin-left:5px"><i class="fas fa-image"></i> Shot</a>`:''}</div><div style="font-size:10px;color:var(--t2);padding:5px;background:rgba(0,0,0,.2);border-radius:4px">${t.note||'No note'}</div></div>`).join('');uTS(f);}
 function delT(id){const i=S.trades.findIndex(t=>t.id===id);if(i===-1)return;const t=S.trades[i];S.bal-=t.result;if(t.result<0)S.dl-=Math.abs(t.result);S.trades.splice(i,1);S.hi=Math.max(S.ib,S.bal);document.getElementById('balV').value=S.bal;uBD();rTL();calcLot();document.getElementById('dBal').value=S.bal;detectWeakSession();updateAutoCoach();}
